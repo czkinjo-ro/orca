@@ -19,8 +19,6 @@ ORCA Unity Pluginは、C#から実行可能なAndroid Unity Pluginとして提�
 
 準備中
 
-Unity SDK Package [Download](https://github.com/z-mediadev/orca-unity/blob/master/orca.unitypackage)
-
 ##3.インストール
 
 unitypackageファイルをプロジェクトへインポートして下さい。
