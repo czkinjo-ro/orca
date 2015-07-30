@@ -53,8 +53,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 
 #####*パーミッションの設定
 
-　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。
-
+　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
 　<Manifest>タグ内に次のパーミッションの設定を追加します。
 
 ```xml
