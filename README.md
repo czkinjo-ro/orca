@@ -44,7 +44,7 @@ unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 
 |名称|導入手順|
 |:--|:--|
-|Google Play Services||
+|Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
 |Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
 |google-gson|[ダウンロード](http://search.maven.org/#artifactdetails%7Ccom.google.code.gson%7Cgson%7C2.3.1%7Cjar)「Plugins」ディレクトリ配下に設置してください。|
 
