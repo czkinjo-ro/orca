@@ -193,7 +193,7 @@ Orca.ShowRecommendPage(
 
 ```c#
 Orca.ShowRecommendPage(
-  "65928b3ceeb3e9cb24d917e5532ad332", // 장면 ID
+  "65928b3ceeb3e9cb24d917e5532ad332", // sceneID
   0,                                 // 일반 정보
   ""                                 // 어떤 항목을 사용하지
 );
