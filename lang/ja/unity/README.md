@@ -6,11 +6,11 @@
 
 ORCA Unity Pluginは、C#から実行可能なAndroid Unity Pluginとして提供しております。
 
-#### 1-1. 動作環境
+### 1-1. 動作環境
  * Unity 4.2.0(4.2.04f) 以降
  * Android 4.2.2 以降
 
-#### 1-2. 用語
+### 1-2. 用語
  * **"シーン"**  
 本プロジェクトでは攻略情報を表示させる各クエスト、ステージ、イベント等を「シーン」と呼称します。
 
@@ -24,7 +24,7 @@ unitypackageファイルをプロジェクトへインポートして下さい�
 
  [Unityプロジェクトのインポート](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
 
-#### 3-1. パッケージ構成
+### 3-1. パッケージ構成
 * Assets/
   * Plugins/
     * `Orca.cs`
@@ -37,7 +37,7 @@ unitypackageファイルをプロジェクトへインポートして下さい�
 
 unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
 
-#### 3-2. 依存ライブラリ
+### 3-2. 依存ライブラリ
 
 貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
 
@@ -46,11 +46,11 @@ unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 |Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
 |Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
 
-#### 3-3. AndroidManifest.xmlの編集
+### 3-3. AndroidManifest.xmlの編集
 
 Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
 
-##### * パーミッションの設定
+#### * パーミッションの設定
 
 　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
 　<Manifest>タグ内に次のパーミッションの設定を追加します。
@@ -61,7 +61,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-##### * アクティビティの設定
+#### * アクティビティの設定
 
 ```xml
 <activity
@@ -80,7 +80,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
   android:theme="@android:style/Theme.Translucent" >
 </activity>
 ```
-##### * Google Play Servicesを利用するための設定
+#### * Google Play Servicesを利用するための設定
 　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
 　**android:valueの値に対しては適切なバージョン番号を設定してください。**
 
@@ -93,7 +93,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 
 C#スクリプトに定義した関数名からSDK機能の呼び出しを行います。
 
-#### 4-1. アプリ起動時
+### 4-1. アプリ起動時
 
 アプリケーションの起動時にクライアントID・アプリケーションIDを設定する実装を行ってください。  
 各種IDは弊社より別途（ヒアリングシート等で）ご連絡致します。
@@ -113,7 +113,7 @@ Orca.Configure(
 |第２引数|アプリケーションID|必須|弊社で発行しご連絡致します。|
 
 
-#### 4-2. 攻略情報取得
+### 4-2. 攻略情報取得
 
 攻略情報を表示する以前のシーンが決定したタイミングで実行するよう実装を行ってください。  
 シーンIDは弊社より別途（ヒアリングシート等で）ご連絡致します。
@@ -147,7 +147,7 @@ Orca.GetRecommendPage(
 |第３引数|ユーザ経験値|任意|ユーザ経験値で配信制御を行う場合は設定してください。<br/>（設定しない場合は空文字を設定）|
 |第４引数|ユーザ設定キャラ|任意|ユーザ設定キャラで配信制御を行う場合は設定してください。<br/>（設定しない場合は空文字を設定）|
 
-#### 4-3. 攻略情報表示チェック
+### 4-3. 攻略情報表示チェック
 
 攻略情報を表示する前に実行してステータスを確認してください。  
 
@@ -182,7 +182,7 @@ if (result == 1) {
 * ステータスが ”2” または ”3” の状態で「4-4.攻略情報表示」を実行すると攻略情報は表示されず、  
 「現在メンテナンス中です。」のポップアップが表示されます。
 
-#### 4-4. 攻略情報表示
+### 4-4. 攻略情報表示
 
 攻略情報を表示する際に実行して下さい。
 
@@ -231,7 +231,7 @@ Orca.ShowRecommendPage(
 |攻撃力|power  |キャラクタの攻撃力数値または名称を設定|
 |利用もしくは設定装備/武器関連名|item  |キャラクタの装備・武器などの名称を設定|
 
-#### 4-5. 全体的な実装例（SDK機能の実行タイミング）
+### 4-5. 全体的な実装例（SDK機能の実行タイミング）
 
 1. アプリ起動
 2. 「4-1.アプリ起動」各種IDの設定
@@ -248,7 +248,7 @@ Orca.ShowRecommendPage(
 
 ## 5. その他API
 
-#### 5-1. クリエイティブ種別の取得
+### 5-1. クリエイティブ種別の取得
 
 ```c#
 int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
@@ -267,9 +267,25 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 
 攻略情報に動画が含まれる場合は、ゲーム内で再生しているBGMを停止することを推奨します。
 
-## 6. SDK導入後のテスト
+## 6. ProGuardを利用する場合
 
-#### 6-1. 確認事項
+ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならない
+よう、以下の設定 を追加してください。
+
+```prolog
+-keepattributes *Annotation*
+
+-libraryjars libs/AppAdForce.jar
+-keep class net.orcaz.sdk.** { *; }
+```
+
+また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+
+[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+
+## 7. SDK導入後のテスト
+
+### 7-1. 確認事項
 
 マーケットへの申請までに、SDKを導入した状態でテストを行い、アプリケーションの動作に問題がないことを確認してください。
 
@@ -281,7 +297,7 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 弊社へテスト実行時間をお伝えください。正常にSDK機能が動作しているかログ等で確認致します。  
 弊社側の確認にて問題がなければテスト完了となります。
 
-#### 6-2. デバッグモードについて
+### 7-2. デバッグモードについて
 
 テスト時の確認等の為にデバッグモードをご用意しております。
 

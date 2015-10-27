@@ -7,11 +7,11 @@
 
 ORCA Unity Plugin은 C#에서 실행 가능한 Android Unity Plugin으로써 제공하고 있습니다.
 
-#### 1-1. 동작 환경
+### 1-1. 동작 환경
 * Unity 4.2.0 (4.2.04f) 이상
 * Android 4.2.2 이상
 
-#### 1-2. 용어
+### 1-2. 용어
 * **"scene"**  
 본 프로젝트에서는 공략 정보를 표시 할 각각의 퀘스트, 스테이지, 이벤트 등을 "scene"이라 호칭합니다.
 
@@ -25,7 +25,7 @@ unitypackage 파일을 귀사의 프로젝트에 import 해 주십시오.
 
  [Unity 프로젝트의 import](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
 
-#### 3-1.패키지의 구성
+### 3-1.패키지의 구성
 * Assets/
  * Plugins/
     * `Orca.cs`
@@ -38,7 +38,7 @@ unitypackage 파일을 귀사의 프로젝트에 import 해 주십시오.
 
 unitypackage내의 「Assets/Plugins」아래의 파일을 귀사의 프로젝트에 포함 시키십시오.
 
-#### 3-2. 의존 라이브러리
+### 3-2. 의존 라이브러리
 
 귀사의 앱에서 다음의 라이브러리를 사용하지 않는 경우 도입이 필요합니다.
 
@@ -47,11 +47,11 @@ unitypackage내의 「Assets/Plugins」아래의 파일을 귀사의 프로젝�
 | Google Play Services | [정보 사이트](https://developers.google.com/android/guides/setup) (AdvertisingId을 이용하지 않는 경우는 필요 없음) |
 | Android Asynchronous Http Client | [다운로드](http://loopj.com/android-async-http/) 「Plugins」디렉토리 아래에 복사 하십시오. |
 
-#### 3-3. AndroidManifest.xml 편집
+### 3-3. AndroidManifest.xml 편집
 
 Assets/Plugins/Android/AndroidManifest.xml을 참조하여 다음의 내용을 복사하십시오.
 
-##### * 퍼미션 설정
+#### * 퍼미션 설정
 
 SDK의 동작에 필요한 퍼미션을 AndroidManifest.xml에 추가합니다.
 <Manifest>태그 내에 다음의 퍼미션의 설정을 추가합니다.
@@ -62,7 +62,7 @@ SDK의 동작에 필요한 퍼미션을 AndroidManifest.xml에 추가합니다.
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-##### * activity의 설정
+#### * activity의 설정
 
 ```xml
 <activity
@@ -86,7 +86,7 @@ SDK의 동작에 필요한 퍼미션을 AndroidManifest.xml에 추가합니다.
 
 C# 스크립트에 정의 된 함수명으로부터 SDK의 기능을 호출합니다.
 
-#### 4-1. 앱 시작
+### 4-1. 앱 시작
 
 귀사의 앱 시작시 클라이언트ID・앱ID를 설정하는 구현을 해야합니다.</br>
 각종 ID는 폐사에서 별도(히어링 시트 등으로) 연락드립니다.
@@ -106,7 +106,7 @@ Orca.Configure(
 | 제 2 인수 | 앱ID | 필수 | 폐사에서 발행하여 연락드립니다. |
 
 
-#### 4-2. 공략 정보 취득
+### 4-2. 공략 정보 취득
 
 공략 정보를 표시하는 이전의 scene이 결정된 타이밍에 실행되도록 구현해야합니다.  
 sceneID는 폐사에서 별도(히어링 시트 등으로) 연락드립니다.
@@ -140,7 +140,7 @@ Orca.GetRecommendPage(
 | 제 3 인수 | 사용자 경험치 | 임의 | 사용자 경험치로 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
 | 제 4 인수 | 사용자 설정 캐릭터 | 임의 | 사용자 설정 캐릭터로 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
 
-#### 4-3. 공략 정보 표시 체크
+### 4-3. 공략 정보 표시 체크
 
 공략 정보를 표시하기 전에 실행하여 상태를 확인하십시오.
 
@@ -175,7 +175,7 @@ if (result == 1) {
 * 상태가 "2"또는 "3"상태에서 「4-4 공략 정보보기」를 실행하면 공략 정보는 표시되지 않고,  
 "現在メンテナンス中です。" 팝업이 표시됩니다.
 
-#### 4-4. 공략 정보 표시
+### 4-4. 공략 정보 표시
 
 공략 정보를 표시 할 때 사용하십시오.
 
@@ -224,7 +224,7 @@ Orca.ShowRecommendPage(
 | 공격력 | power | 캐릭터의 공격력 수치 또는 명칭을 설정 |
 | 이용 또는 설정 장비/무기 관련 이름 | item | 캐릭터의 장비·무기 등의 명칭을 설정 |
 
-#### 4-5. 전체적인 구현 예(SDK 기능의 실행 타이밍)
+### 4-5. 전체적인 구현 예(SDK 기능의 실행 타이밍)
 
 1. 앱 시작
 2. 「4-1. 앱 시작」각종 ID의 설정
@@ -241,7 +241,7 @@ Orca.ShowRecommendPage(
 
 ## 5. 기타 API
 
-#### 5-1. 크리에이티브 종류의 취득
+### 5-1. 크리에이티브 종류의 취득
 
 ```c#
 int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // sceneID
@@ -260,9 +260,24 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 
 공략 정보에 동영상이 포함 된 경우, 게임 내에서 재생되는 BGM을 중지 할 것을 권장합니다.
 
-## 6. SDK 도입후 테스트
+## 6. ProGuard를 사용하는 경우
 
-#### 6-1. 확인 사항
+ProGuard를 이용하여 앱의 난독화 처리를 할 때는 F.O.X SDK의 메소드가 대상이되지 않도록 아래의 설정을 추가 하십시오.。
+
+```prolog
+-keepattributes *Annotation*
+
+-libraryjars libs/AppAdForce.jar
+-keep class net.orcaz.sdk.** { *; }
+```
+
+또한 Google Play Service SDK를 도입되는 경우는 다음 페이지에 기재되어 keep 지정이 기술되어 있는지 확인하십시오.
+
+[Google Play Services 도입시 Proguard 지원](https://developer.android.com/google/play-services/setup.html#Proguard)
+
+## 7. SDK 도입후 테스트
+
+### 7-1. 확인 사항
 
 스토어 신청전까지 SDK를 도입 한 상태에서 테스트를 실시하여 앱의 동작에 문제가 없는지 확인하십시오.
 
@@ -274,7 +289,7 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 폐사에 테스트 실행 시간을 알려주십시오. 제대로 SDK 기능이 작동하고 있는지 로그 등으로 확인합니다.  
 폐사측의 확인에서 문제가 없다면 테스트가 완료됩니다.
 
-#### 6-2. 디버그 모드에 대해
+### 7-2. 디버그 모드에 대해
 
 테스트시의 확인 등을 위하여 디버그 모드를 준비하고 있습니다.
 
