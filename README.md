@@ -1,4 +1,4 @@
-# ORCA SDK Integration Guide
+# みんなの攻略情報 SDK Integration Guide
 
 ### 日本語(Japanese)
 * [Unity](./lang/ja/unity/)
