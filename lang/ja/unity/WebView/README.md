@@ -1,10 +1,10 @@
-# ORCA Unity WebView導入手順
+# みんなの攻略情報 Unity WebView導入手順
 * Modified: 2015-10-20
-* ORCA SDK Version: 1.3.0
+* みんなの攻略情報 SDK Version: 1.3.0
 
-## 1. ORCA Unity WebView Plugin
+## 1. みんなの攻略情報 Unity WebView Plugin
 
-ORCA Unity WebView Pluginは、  
+みんなの攻略情報 Unity WebView Pluginは、  
 Unity WebViewで実行可能なAndroid Unity WebView Pluginとして提供しております。
 
 #### * **UnityのWebViewについて**
