@@ -1,8 +1,8 @@
 # みんなの攻略情報 Unity導入手順
 * Modified: 2015-10-20
-* ORCA SDK Version: 1.3.0
+* みんなの攻略情報 SDK Version: 1.3.0
 
-## 1. ORCA Unity Plugin
+## 1. みんなの攻略情報 Unity Plugin
 
 みんなの攻略情報 Unity Pluginは、C#から実行可能なAndroid Unity Pluginとして提供しております。
 
