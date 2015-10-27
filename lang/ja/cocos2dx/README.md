@@ -281,9 +281,25 @@ int creativeType = OrcaPlugin::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332
 
 攻略情報に動画が含まれる場合は、ゲーム内で再生しているBGMを停止することを推奨します。
 
-## 6. SDK導入後のテスト
+## 6. ProGuardを利用する場合
 
-### 6-1. 確認事項
+ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならない
+よう、以下の設定 を追加してください。
+
+```prolog
+-keepattributes *Annotation*
+
+-libraryjars libs/AppAdForce.jar
+-keep class net.orcaz.sdk.** { *; }
+```
+
+また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+
+[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+
+## 7. SDK導入後のテスト
+
+### 7-1. 確認事項
 
 マーケットへの申請までに、SDKを導入した状態でテストを行い、アプリケーションの動作に問題がないことを確認してください。
 
@@ -295,7 +311,7 @@ int creativeType = OrcaPlugin::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332
 弊社へテスト実行時間をお伝えください。正常にSDK機能が動作しているかログ等で確認致します。  
 弊社側の確認にて問題がなければテスト完了となります。
 
-### 6-2. デバッグモードについて
+### 7-2. デバッグモードについて
 
 テスト時の確認等の為にデバッグモードをご用意しております。
 
