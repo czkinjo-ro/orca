@@ -1,9 +1,9 @@
-# ORCA Cocos2d-x導入手順
+# みんなの攻略情報 Cocos2d-x導入手順
 * Modified: 2015-10-20
-* ORCA SDK Version: 1.3.0
+* みんなの攻略情報 SDK Version: 1.3.0
 
-## 1. ORCA Cocos2d-x Plugin
-ORCA Cocos2d-x Pluginは、  
+## 1. みんなの攻略情報 Cocos2d-x Plugin
+みんなの攻略情報 Cocos2d-x Pluginは、  
 Cocos2d-xで実行可能なCocos2d-x Pluginとして提供しております。
 
 ### 1-1. 動作環境
