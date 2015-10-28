@@ -1,6 +1,6 @@
 # 모두의 공략정보 Unity의 도입 방법
 * Modified : 2015-10-20
-* 모두의 공략정보 SDK Version : 1.2.0
+* 모두의 공략정보 SDK Version : 1.3.0
 
 ## 1. 모두의 공략정보 Unity Plugin
 
