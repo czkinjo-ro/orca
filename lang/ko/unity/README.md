@@ -1,11 +1,10 @@
-# ORCA Unity의 도입 방법
-* Modified : 2015-09-04
-* Unity Plug-in Version : 1.2.0
-* Android SDK Version : 1.2.0
+# 모두의 공략정보 Unity의 도입 방법
+* Modified : 2015-10-20
+* 모두의 공략정보 SDK Version : 1.2.0
 
-## 1. ORCA Unity Plugin
+## 1. 모두의 공략정보 Unity Plugin
 
-ORCA Unity Plugin은 C#에서 실행 가능한 Android Unity Plugin으로써 제공하고 있습니다.
+모두의 공략정보 Unity Plugin은 C#에서 실행 가능한 Android Unity Plugin으로써 제공하고 있습니다.
 
 ### 1-1. 동작 환경
 * Unity 4.2.0 (4.2.04f) 이상
