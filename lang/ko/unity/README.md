@@ -266,7 +266,7 @@ ProGuard를 이용하여 앱의 난독화 처리를 할 때는 F.O.X SDK의 메�
 ```prolog
 -keepattributes *Annotation*
 
--libraryjars libs/AppAdForce.jar
+-libraryjars libs/orca-androidsdk.jar
 -keep class net.orcaz.sdk.** { *; }
 ```
 
