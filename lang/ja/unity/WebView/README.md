@@ -302,7 +302,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 ```prolog
 -keepattributes *Annotation*
 
--libraryjars libs/AppAdForce.jar
+-libraryjars libs/orca-androidsdk.jar
 -keep class net.orcaz.sdk.** { *; }
 ```
 
