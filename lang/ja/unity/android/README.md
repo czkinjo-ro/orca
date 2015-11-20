@@ -11,6 +11,8 @@
 
 unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
 
+* [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+
 ## * 依存ライブラリ
 
 貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
@@ -19,6 +21,8 @@ unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 |:--|:--|
 |Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
 |Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
+* [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
+* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
 
 ## * AndroidManifest.xmlの編集
 

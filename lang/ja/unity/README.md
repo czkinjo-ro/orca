@@ -1,6 +1,8 @@
 # みんなの攻略情報 Unity導入手順
 * Modified: 2015-11-20
-* みんなの攻略情報 SDK Version: 1.3.0
+* みんなの攻略情報 SDK Version
+  * iOS SDK : 1.0.0
+  * Android SDK : 1.3.0
 
 ## 1. みんなの攻略情報 Unity Plugin
 
@@ -15,17 +17,17 @@
  * **"シーン"**  
 本プロジェクトでは攻略情報を表示させる各クエスト、ステージ、イベント等を「シーン」と呼称します。
 
-## 2. ダウンロード
+## 2. SDKのダウンロード
 
 準備中
 
-## 3. インストール
+## 3. プロジェクトへの導入
 
-unitypackageファイルをプロジェクトへインポートして下さい。
+UnityPackageファイルをプロジェクトへインポートして下さい。
 
  [Unityプロジェクトのインポート](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
 
-各OS毎の設定
+### 各OS毎の設定
 * [iOSプロジェクトの設定](./ios/README.md)
 * [Androidプロジェクトの設定](./android/README.md)
 

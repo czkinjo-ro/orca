@@ -25,7 +25,7 @@ Cocos2d-xで実行可能なCocos2d-x Pluginとして提供しております。
 
 #### 3-1-1. ダウンロードしたSDK「ORCA_Android_SDK_Vx.x.x.zip」を展開し、「orca-androidsdk.jar」をプロジェクトに組み込んでください。
 
-* [Eclipseプロジェクトへの導入方法](./doc/integration/eclipse)
+* [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
 
 #### 3-1-2. Android/Classed配下にOrcaPlugin.hとOrcaPlugin.cppをコピーしてください。
 
@@ -60,8 +60,8 @@ LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
 |:--|:--|:--|
 |Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
 |Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
-* [Google Play Servicesの導入方法](./doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](./doc/async_http)
+* [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
+* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
 
 ### 3-3. AndroidManifest.xmlの編集
 
