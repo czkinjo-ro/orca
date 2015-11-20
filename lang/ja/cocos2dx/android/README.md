@@ -1,37 +1,51 @@
 # Androidプロジックトの設定
 
 ## パッケージ構成
-* Assets/
-  * Plugins/
-    * `Orca.cs`
-    * Android/
-      * `orca-androidsdk.jar`
-      * `AndroidManifest.xml`
-      * res/
 
-UnityPackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
+* Androidプロジェクト/
+  * Classes/
+    * `OrcaPlugin.h`
+    * `OrcaPlugin.cpp`
+
+Cocos2dxPackage内の「orca-androidsdk.jar」をプロジェクトに組み込んでください。
 
 * [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+
+### * Android/Classed配下にOrcaPlugin.hとOrcaPlugin.cppをコピーしてください。
+
+### * プロジェクト内配下のjni/Android.mk　を以下のように編集してください。
+
+```mk
+LOCAL_SRC_FILES := ...
+                   ...  //省略
+                   ../../Classes/OrcaPlugin.cpp
+```
+LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
+
+### * OrcaPlugin.cppのJniHelper.hのinclude PATHを開発環境に合わせて編集してください。
+
+ ```c++
+#include "cocos2d.h"
+#include "OrcaPlugin.h"
+#include "platform/android/jni/JniHelper.h"
+ ```
 
 ## 依存ライブラリ
 
 貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
 
-|名称|導入手順|
-|:--|:--|
-|Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
+|名称|必須|導入手順|
+|:--|:--|:--|
+|Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
+|Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
 * [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
 * [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
 
 ## AndroidManifest.xmlの編集
 
-Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
-
 ### * パーミッションの設定
 
-　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
-　<Manifest>タグ内に次のパーミッションの設定を追加します。
+　SDKの動作に必要な以下のパーミッションをAndroidManifest.xmlに追加します。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -40,10 +54,10 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 ```
 
 ### * アクティビティの設定
-
+　SDKの動作に必要な以下のアクティビティをAndroidManifest.xmlに追加してください。
 ```xml
 <activity
-  android:name="net.orcaz.sdk.unity.MainActivity"
+  android:name="net.orcaz.sdk.cocos2dx.Cocos2dxActivity"
   android:configChanges="orientation|keyboardHidden|screenSize"
   android:hardwareAccelerated="true">
 </activity>
@@ -58,10 +72,9 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
   android:theme="@android:style/Theme.Translucent" >
 </activity>
 ```
-### * Google Play Servicesを利用するための設定
-　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
-　**android:valueの値に対しては適切なバージョン番号を設定してください。**
 
+### * Google Play Servicesを利用するための設定
+　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。
 ```xml
 <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
@@ -85,4 +98,4 @@ ProGuard を利用してアプリケーションの難読化を行う際は O
 
 ----
 
-[TOPへ](/lang/ja/unity/README.md)
+[TOPへ](/lang/ja/cocos2dx/README.md)

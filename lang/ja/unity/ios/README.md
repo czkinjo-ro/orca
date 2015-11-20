@@ -1,15 +1,15 @@
 # iOSプロジックトの設定
 
-## * パッケージ構成
+## パッケージ構成
 * Assets/
   * Plugins/
     * `Orca.cs`
     * iOS/
       * `OrcaSDK.framework`
 
-unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
+UnityPackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
 
-## * 依存ライブラリ
+## 依存ライブラリ
 
 貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
 
@@ -19,7 +19,7 @@ unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 
 * [AdSupportの導入方法](./adsupport/README.md)
 
-## * UnityAppController.mmの編集
+## UnityAppController.mmの編集
 Unityによって出力されたXcodeのプロジェクトに含まれるUnityAppController.mmに
 以下のコードを追加します。
 
