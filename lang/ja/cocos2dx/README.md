@@ -1,13 +1,17 @@
 # みんなの攻略情報 Cocos2d-x導入手順
-* Modified: 2015-10-20
-* みんなの攻略情報 SDK Version: 1.3.0
+* Modified: 2015-11-20
+* みんなの攻略情報 SDK Version
+  * iOS SDK : 1.0.0
+  * Android SDK : 1.3.0
 
 ## 1. みんなの攻略情報 Cocos2d-x Plugin
+
 みんなの攻略情報 Cocos2d-x Pluginは、  
 Cocos2d-xで実行可能なCocos2d-x Pluginとして提供しております。
 
 ### 1-1. 動作環境
  * Cocos2d-x-2.1.5 以降
+ * iOS 6.0 以降
  * Android 4.2.2 以降
 
 ### 1-2. 用語
@@ -21,87 +25,9 @@ Cocos2d-xで実行可能なCocos2d-x Pluginとして提供しております。
 
 ## 3. プロジェクトへの導入
 
-### 3-1. Cocos2d-xプロジェクトのClassesへの導入
-
-#### 3-1-1. ダウンロードしたSDK「ORCA_Android_SDK_Vx.x.x.zip」を展開し、「orca-androidsdk.jar」をプロジェクトに組み込んでください。
-
-* [Eclipseプロジェクトへの導入方法](./doc/integration/eclipse)
-
-#### 3-1-2. Android/Classed配下にOrcaPlugin.hとOrcaPlugin.cppをコピーしてください。
-
- * Androidプロジェクト/
-   * Classes/
-     * `OrcaPlugin.h`
-     * `OrcaPlugin.cpp`
-
-
-#### 3-1-3. プロジェクト内配下のjni/Android.mk　を以下のように編集してください。
-
-```mk
-LOCAL_SRC_FILES := ...
-                   ...  //省略
-                   ../../Classes/OrcaPlugin.cpp
-```
-LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
-
-#### 3-1-4. OrcaPlugin.cppのJniHelper.hのinclude PATHを開発環境に合わせて編集してください。
-
- ```c++
-#include "cocos2d.h"
-#include "OrcaPlugin.h"
-#include "platform/android/jni/JniHelper.h"
- ```
-
-### 3-2. 依存ライブラリの追加
-
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
-
-|名称|必須|導入手順|
-|:--|:--|:--|
-|Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
-* [Google Play Servicesの導入方法](./doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](./doc/async_http)
-
-### 3-3. AndroidManifest.xmlの編集
-
-#### * パーミッションの設定
-
-　SDKの動作に必要な以下のパーミッションをAndroidManifest.xmlに追加します。
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-```
-
-#### * アクティビティの設定
-　SDKの動作に必要な以下のアクティビティをAndroidManifest.xmlに追加してください。
-```xml
-<activity
-  android:name="net.orcaz.sdk.cocos2dx.Cocos2dxActivity"
-  android:configChanges="orientation|keyboardHidden|screenSize"
-  android:hardwareAccelerated="true">
-</activity>
-<activity
-  android:name="net.orcaz.sdk.review.WebDialog"
-  android:configChanges="orientation|keyboardHidden|screenSize"
-  android:theme="@android:style/Theme.Dialog" >
-</activity>
-<activity
-  android:name="net.orcaz.sdk.common.DialogActivity"
-  android:configChanges="keyboardHidden|orientation|screenSize"
-  android:theme="@android:style/Theme.Translucent" >
-</activity>
-```
-
-#### * Google Play Servicesを利用するための設定
-　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。
-```xml
-<meta-data android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
-```
-
+### 各OS毎の設定
+* [iOSプロジェクトの設定](./ios/README.md)
+* [Androidプロジェクトの設定](./android/README.md)
 
 ## 4. SDK機能の実装
 

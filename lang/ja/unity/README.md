@@ -1,93 +1,36 @@
 # みんなの攻略情報 Unity導入手順
-* Modified: 2015-10-20
-* みんなの攻略情報 SDK Version: 1.3.0
+* Modified: 2015-11-20
+* みんなの攻略情報 SDK Version
+  * iOS SDK : 1.0.0
+  * Android SDK : 1.3.0
 
 ## 1. みんなの攻略情報 Unity Plugin
 
-みんなの攻略情報 Unity Pluginは、C#から実行可能なAndroid Unity Pluginとして提供しております。
+みんなの攻略情報 Unity Pluginは、C#から実行可能なSDKとして提供しております。
 
 ### 1-1. 動作環境
  * Unity 4.2.0(4.2.04f) 以降
+ * iOS 6.0 以降
  * Android 4.2.2 以降
 
 ### 1-2. 用語
  * **"シーン"**  
 本プロジェクトでは攻略情報を表示させる各クエスト、ステージ、イベント等を「シーン」と呼称します。
 
-## 2. ダウンロード
+## 2. SDKのダウンロード
 
 準備中
 
-## 3. インストール
+## 3. プロジェクトへの導入
 
-unitypackageファイルをプロジェクトへインポートして下さい。
+UnityPackageファイルをプロジェクトへインポートして下さい。
 
  [Unityプロジェクトのインポート](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
 
-### 3-1. パッケージ構成
-* Assets/
-  * Plugins/
-    * `Orca.cs`
-    * Android/
-      * `orca-androidsdk.jar`
-      * `AndroidManifest.xml`
-      * res/
-    * iOS/
-      * `(準備中)`
+### 各OS毎の設定
+* [iOSプロジェクトの設定](./ios/README.md)
+* [Androidプロジェクトの設定](./android/README.md)
 
-unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
-
-### 3-2. 依存ライブラリ
-
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
-
-|名称|導入手順|
-|:--|:--|
-|Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
-
-### 3-3. AndroidManifest.xmlの編集
-
-Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
-
-#### * パーミッションの設定
-
-　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
-　<Manifest>タグ内に次のパーミッションの設定を追加します。
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-```
-
-#### * アクティビティの設定
-
-```xml
-<activity
-  android:name="net.orcaz.sdk.unity.MainActivity"
-  android:configChanges="orientation|keyboardHidden|screenSize"
-  android:hardwareAccelerated="true">
-</activity>
-<activity
-  android:name="net.orcaz.sdk.review.WebDialog"
-  android:configChanges="orientation|keyboardHidden|screenSize"
-  android:theme="@android:style/Theme.Dialog" >
-</activity>
-<activity
-  android:name="net.orcaz.sdk.common.DialogActivity"
-  android:configChanges="keyboardHidden|orientation|screenSize"
-  android:theme="@android:style/Theme.Translucent" >
-</activity>
-```
-#### * Google Play Servicesを利用するための設定
-　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
-　**android:valueの値に対しては適切なバージョン番号を設定してください。**
-
-```xml
-<meta-data android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
-```
 
 ## 4. SDK機能の実装
 
@@ -267,25 +210,9 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 
 攻略情報に動画が含まれる場合は、ゲーム内で再生しているBGMを停止することを推奨します。
 
-## 6. ProGuardを利用する場合
+## 6. SDK導入後のテスト
 
-ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならない
-よう、以下の設定 を追加してください。
-
-```prolog
--keepattributes *Annotation*
-
--libraryjars libs/orca-androidsdk.jar
--keep class net.orcaz.sdk.** { *; }
-```
-
-また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
-
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
-
-## 7. SDK導入後のテスト
-
-### 7-1. 確認事項
+### 6-1. 確認事項
 
 マーケットへの申請までに、SDKを導入した状態でテストを行い、アプリケーションの動作に問題がないことを確認してください。
 
@@ -297,7 +224,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 弊社へテスト実行時間をお伝えください。正常にSDK機能が動作しているかログ等で確認致します。  
 弊社側の確認にて問題がなければテスト完了となります。
 
-### 7-2. デバッグモードについて
+### 6-2. デバッグモードについて
 
 テスト時の確認等の為にデバッグモードをご用意しております。
 
