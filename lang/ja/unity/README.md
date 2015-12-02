@@ -1,7 +1,7 @@
 # みんなの攻略情報 Unity導入手順
-* Modified: 2015-11-20
+* Modified: 2015-12-02
 * みんなの攻略情報 SDK Version
-  * iOS SDK : 1.0.0
+  * iOS SDK : 1.0.1
   * Android SDK : 1.3.0
 
 ## 1. みんなの攻略情報 Unity Plugin
