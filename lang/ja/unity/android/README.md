@@ -1,4 +1,4 @@
-# Androidプロジックトの設定
+# Androidプロジェクトの設定
 
 ## パッケージ構成
 * Assets/
