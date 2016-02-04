@@ -1,66 +1,41 @@
-# みんなの攻略情報 Unity WebView導入手順
-* Modified: 2015-12-09
-* みんなの攻略情報 SDK Version: 1.3.0
+# みんなの攻略情報 Android SDK導入手順
 
-## 1. みんなの攻略情報 Unity WebView Plugin
-
-みんなの攻略情報 Unity WebView Pluginは、  
-Unity WebViewで実行可能なAndroid Unity WebView Pluginとして提供しております。
-
-#### * **UnityのWebViewについて**
-UnityでWebViewを扱うには様々な方法がありますが、  
-弊社では[greeのunity-webviewプラグイン](https://github.com/gree/unity-webview)を
-使って動作確認を行いました。
+## 1. みんなの攻略情報 Android SDK
 
 ### 1-1. 動作環境
- * Unity 4.2.0(4.2.04f) 以降
  * Android 4.2.2 以降
 
 ### 1-2. 用語
  * **"シーン"**  
 本プロジェクトでは攻略情報を表示させる各クエスト、ステージ、イベント等を「シーン」と呼称します。
 
+## 2. SDKのダウンロード
 
-## 2. ダウンロード
 準備中
-
 
 ## 3. プロジェクトへの導入
 
-unitypackageファイルをプロジェクトへインポートして下さい。
+* [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
 
- [Unityプロジェクトのインポート](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
-
-### 3-1. パッケージ構成
-* Assets/
-  * Plugins/
-    * `Orca.cs`
-    * Android/
-      * `orca-androidsdk.jar`
-      * `AndroidManifest.xml`
-      * `WebViewPlugin.jar`
-      * res/
-    * iOS/
-      * `(準備中)`
-
-unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
-
-### 3-2. 依存ライブラリ
+## 依存ライブラリ
 
 貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
 
-|名称|必須|導入手順|
-|:--|:--|:--|
-|Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
+|名称|導入手順|
+|:--|:--|
+|Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
+|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
+* [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
+* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
 
-### 3-3. AndroidManifest.xmlの編集
+## AndroidManifest.xmlの編集
 
 Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
 
-#### * パーミッションの設定
+### * パーミッションの設定
 
-　SDKの動作に必要な以下のパーミッションをAndroidManifest.xmlに追加します。
+　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
+　<Manifest>タグ内に次のパーミッションの設定を追加します。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -68,9 +43,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-#### * アクティビティの設定
-
-　SDKの動作に必要な以下のアクティビティをAndroidManifest.xmlに追加してください。
+### * アクティビティの設定
 
 ```xml
 <activity
@@ -90,7 +63,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 </activity>
 ```
 
-#### * Google Play Servicesを利用するための設定
+### * Google Play Servicesを利用するための設定
 　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
 　**android:valueの値に対しては適切なバージョン番号を設定してください。**
 
@@ -99,69 +72,94 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
         android:value="@integer/google_play_services_version" />
 ```
 
-### 3-4. JavaScript Interfaceの定義
+## ProGuardを利用する場合
 
-greeのWebViewPluginに以下のようにJavaScriptInterfaceを定義してください。
+ProGuard を利用してアプリケーションの難読化を行う際は ORCA SDK のメソッドが対象とならない
+よう、以下の設定を追加してください。
 
-[実装例]
+```prolog
+-keepattributes *Annotation*
 
-```Java
-OrcaWebViewPlugin orcaWebViewPlugin = new OrcaWebViewPlugin();
-
-WebView webView.addJavascriptInterface(mOrcaWebViewPlugin , OrcaWebViewPlugin.JSI_NAME);
+-libraryjars libs/orca-androidsdk.jar
+-keep class net.orcaz.sdk.** { *; }
 ```
+
+また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+
+[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 
 ## 4. SDK機能の実装
 
-JavaScriptInterfaceに定義した関数名からSDK機能の呼び出しを行います。
+「4-1. アプリ起動時」はJavaメソッドで実行を行ってください。
+「4-2. 攻略情報取得」「4-3. 攻略情報表示チェック」「4-4. 攻略情報表示」はアプリ内のWebViewからJavaScriptメソッドで呼び出してください。
 
 ### 4-1. アプリ起動時
 
 アプリケーションの起動時にクライアントID・アプリケーションIDを設定する実装を行ってください。  
 各種IDは弊社より別途（ヒアリングシート等で）ご連絡致します。
-* **ConfigureはC#から呼び出す必要がありますのでご注意ください。**  
 
 [実装例]
 
-```c#
-Orca.Configure(
-  "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
-  "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
-);
+```java
+
+import net.orcaz.sdk.Orca;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    Orca.configure(
+      "86b8094d44c175850b18ec31eb9adf71", // クライアントID
+      "d1d1b00e741d2417a4a1f55b1eda5bed"  // アプリケーションID
+    );
+}
 ```
 
 |パラメータ|内容|必須|備考|
 |:------|:------|:------|:------|
-|第１引数|クライアントID|必須|弊社で発行しご連絡致します。|
+|第１引数|クライアントID|必須|弊社で発行しご連絡致します。<br/>|
 |第２引数|アプリケーションID|必須|弊社で発行しご連絡致します。<br/>※ iOSとAndroid共通で利用可能|
 
 
 ### 4-2. 攻略情報取得
 
+
 攻略情報を表示する以前のシーンが決定したタイミングで実行するよう実装を行ってください。  
 シーンIDは弊社より別途（ヒアリングシート等で）ご連絡致します。
-* **JavaScriptからコードを呼び出してください。**  
+
 [実装例]
 
-```js
-OrcaUnity.getRecommendPage(
-  "3ef9de9339eec72ff6ee71af1a71c156|75a3e173267a287c67c394e618775b98",  // シーンID（2個取得の場合の例）
-  "レベル1",                           // ユーザレベル
-  "15",                                // ユーザ経験値
-  "勇者"                               // ユーザ設定キャラ
-);
+```javascript
+<script type="text/javascript">
+
+function getXXXX() {
+  Orca.getRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // シーンID（2個取得の場合の例）
+    "レベル1",                           // ユーザレベル
+    "15",                               // ユーザ経験値
+    "勇者"                               // ユーザ設定キャラ
+  );
+}
+
+</script>
 ```
 
 [実装例（配信制御を利用しない場合）]
 
-```js
-OrcaUnity.getRecommendPage(
-  "3ef9de9339eec72ff6ee71af1a71c156",  // シーンID（1個取得の場合の例）
-  "",                                  // ユーザレベル
-  "",                                  // ユーザ経験値
-  ""                                   // ユーザ設定キャラ
-);
+```javascript
+<script type="text/javascript">
+
+function getXXXX() {
+  Orca.getRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332",  // シーンID（1個取得の場合の例）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    ""                                   // ユーザ設定キャラ
+  );
+}
+
+</script>
 ```
 
 |パラメータ|内容|必須|備考|
@@ -174,21 +172,26 @@ OrcaUnity.getRecommendPage(
 ### 4-3. 攻略情報表示チェック
 
 攻略情報を表示する前に実行してステータスを確認してください。  
-* **JavaScriptからコードを呼び出してください。**  
 
 [実装例]
 
-```js
-var result = OrcaUnity.checkRecommendPage("3ef9de9339eec72ff6ee71af1a71c156");
-if (result == 1) {
-  // 攻略情報表示可能
-  // 例えば、攻略情報表示ボタンを表示する処理コードを実装
-} else if (result == 2) {
-  // 攻略情報の表示の準備ができていない
-  // 例えば、再度GetRecommendPageを呼び出すコードを実装
-} else if (result == 3) {
-  // 攻略情報表示不可能
+```javascript
+<script type="text/javascript">
+
+function checkXXXX() {
+  int result = Orca.checkRecommendPage("65928b3ceeb3e9cb24d917e5532ad332");
+  if (result == 1) {
+    // 攻略情報表示可能
+    // 例えば、攻略情報表示ボタンを表示する処理コードを実装
+  } else if (result == 2) {
+    // 攻略情報の表示の準備ができていない
+    // 例えば、再度GetRecommendPageを呼び出すコードを実装
+  } else if (result == 3) {
+    // 攻略情報表示不可能
+  }
 }
+
+</script>
 ```
 
 |パラメータ|内容|必須|備考|
@@ -211,26 +214,37 @@ if (result == 1) {
 ### 4-4. 攻略情報表示
 
 攻略情報を表示する際に実行して下さい。
-* **JavaScriptからコードを呼び出してください。**  
 
 [実装例]
 
-```js
-OrcaUnity.showRecommendPage(
-  "3ef9de9339eec72ff6ee71af1a71c156" // シーンID
-  0,                                 // クリア情報
-  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
-);
+```javascript
+<script type="text/javascript">
+
+function showXXXX() {
+  Orca.showRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332" // シーンID
+    0,                                 // クリア情報
+    "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
+  );
+}
+
+</script>
 ```
 
 [実装例（任意項目を利用しない場合）]
 
-```js
-OrcaUnity.showRecommendPage(
-  "3ef9de9339eec72ff6ee71af1a71c156", // シーンID
-  0,                                  // クリア情報
-  ""                                  // 任意項目を使用しない
-);
+```javascript
+<script type="text/javascript">
+
+function showXXXX() {
+  Orca.showRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332", // シーンID
+    0,                                  // クリア情報
+    ""                                  // 任意項目を使用しない
+  );
+}
+
+</script>
 ```
 
 |パラメータ|内容|必須|備考|
@@ -276,10 +290,17 @@ OrcaUnity.showRecommendPage(
 ## 5. その他API
 
 ### 5-1. クリエイティブ種別の取得
-* **JavaScriptからコードを呼び出してください。**  
 
-```js
-int creativeType = Orca.getCreativeType("3ef9de9339eec72ff6ee71af1a71c156"); // シーンID
+```javascript
+<script type="text/javascript">
+
+function getXXXX() {
+
+  int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
+
+}
+
+</script>
 ```
 
 |パラメータ|内容|必須|備考|
@@ -295,25 +316,9 @@ int creativeType = Orca.getCreativeType("3ef9de9339eec72ff6ee71af1a71c156"); // 
 
 攻略情報に動画が含まれる場合は、ゲーム内で再生しているBGMを停止することを推奨します。
 
-## 6. ProGuardを利用する場合
+## 6. SDK導入後のテスト
 
-ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならない
-よう、以下の設定 を追加してください。
-
-```prolog
--keepattributes *Annotation*
-
--libraryjars libs/orca-androidsdk.jar
--keep class net.orcaz.sdk.** { *; }
-```
-
-また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
-
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
-
-## 7. SDK導入後のテスト
-
-### 7-1. 確認事項
+### 6-1. 確認事項
 
 マーケットへの申請までに、SDKを導入した状態でテストを行い、アプリケーションの動作に問題がないことを確認してください。
 
@@ -325,7 +330,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 弊社へテスト実行時間をお伝えください。正常にSDK機能が動作しているかログ等で確認致します。  
 弊社側の確認にて問題がなければテスト完了となります。
 
-### 7-2. デバッグモードについて
+### 6-2. デバッグモードについて
 
 テスト時の確認等の為にデバッグモードをご用意しております。
 
