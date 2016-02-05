@@ -24,13 +24,13 @@
 |名称|導入手順|
 |:--|:--|
 |Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
+|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「libs」ディレクトリ配下に設置してください。|
 * [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
 * [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
 
 ## AndroidManifest.xmlの編集
 
-Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
+AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
 
 ### * パーミッションの設定
 
@@ -47,7 +47,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 
 ```xml
 <activity
-  android:name="net.orcaz.sdk.unity.MainActivity"
+  android:name="net.orcaz.sdk.Orca"
   android:configChanges="orientation|keyboardHidden|screenSize"
   android:hardwareAccelerated="true">
 </activity>
@@ -88,6 +88,19 @@ ProGuard を利用してアプリケーションの難読化を行う際は O
 
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
+## WebViewの設定
+
+WebView生成時にJavaScript有効化とJavaScriptInterfaceを定義してください。
+
+[実装例]
+
+```java
+
+  WebView webView = new WebView(this);
+  webView.getSettings().setJavaScriptEnabled(true);
+  webView.addJavascriptInterface(new Orca(), Orca.JSI_NAME);
+
+```
 
 ## 4. SDK機能の実装
 
