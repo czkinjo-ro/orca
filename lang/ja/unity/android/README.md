@@ -37,6 +37,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
 
 ### * アクティビティの設定
@@ -48,6 +49,11 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
   android:hardwareAccelerated="true">
 </activity>
 <activity
+    android:name="net.orcaz.sdk.Orca"
+    android:configChanges="keyboardHidden|orientation|screenSize"
+    android:hardwareAccelerated="true" >
+</activity>
+<activity
   android:name="net.orcaz.sdk.review.WebDialog"
   android:configChanges="orientation|keyboardHidden|screenSize"
   android:theme="@android:style/Theme.Dialog" >
@@ -57,6 +63,13 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
   android:configChanges="keyboardHidden|orientation|screenSize"
   android:theme="@android:style/Theme.Translucent" >
 </activity>
+<activity
+  android:name="net.orcaz.sdk.floating.ContentsActivity"
+  android:configChanges="keyboardHidden|orientation|screenSize"
+  android:hardwareAccelerated="true" >
+</activity>
+
+<service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
 ### * Google Play Servicesを利用するための設定
 　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
@@ -66,6 +79,12 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
 ```
+
+## * 画面回転の設定
+
+iOSアプリの場合、貴社アプリの回転設定に従って動作します。
+
+Androidアプリの場合、画面の回転の設定については`AndroidManifest.xml`の`android:configChanges`を編集してください。
 
 ## ProGuardを利用する場合
 

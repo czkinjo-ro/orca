@@ -13,11 +13,12 @@ UnityPackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 
 貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
 
-|名称|導入手順|
+|名称|Status|
 |:--|:--|
-|AdSupport.framework|[情報サイト](https://developer.apple.com/library/tvos/documentation/DeviceInformation/Reference/AdSupport_Framework/index.html)  （AdvertisingIdを利用しない場合は必要なし）|
-
-* [AdSupportの導入方法](./adsupport/README.md)
+|AdSupport.framework|Required|
+|Systemconfiguration.framework|Required|
+|Security.framework|Required|
+* [AdSupportの導入方法(SystemconfigurationとSecurityも同様)](./adsupport/README.md)
 
 ## UnityAppController.mmの編集
 Unityによって出力されたXcodeのプロジェクトに含まれるUnityAppController.mmに
