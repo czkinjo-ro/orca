@@ -99,8 +99,7 @@ Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`�
 -keep class net.orcaz.sdk.** { *; }
 ```
 
-また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
-另外，导入GooglePlayServiceSDK的情况下，请确认下面的页面中记载的keep指定有没有被记录。
+另外，导入GooglePlayServiceSDK的情况下，参考下面的页面配置keep值。
 
 [Google Play Services导入时使用Proguard](https://developer.android.com/google/play-services/setup.html#Proguard)
 
