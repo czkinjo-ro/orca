@@ -1,43 +1,42 @@
-# みんなの攻略情報 Android SDK導入手順
+# 大家的游戏攻略 Android SDK 导入手册
 
-### 1-1. 動作環境
- * Android 4.2.2 以降
+### 1-1. 运行环境
+ * Android 4.2.2 以上
 
-### 1-2. 用語
+### 1-2. 术语
+ * **"scene"**  
+这个项目中游戏攻略的各个任务，关卡、活动等统称为“scene”。
 
- * **"シーン"**  
-本プロジェクトでは表示する攻略情報の各クエスト、ステージ、イベント等を「シーン」と呼称します。
+* **"page"**  
+贵公司游戏中打开的攻略画面被称为"page"。
 
-* **"ページ"**  
-貴社アプリの攻略情報を呼び出す画面の単位を「ページ」と呼称します。
+## 2. 下载SDK
 
-## 2. SDKのダウンロード
+正在准备
 
-準備中
+## 3. 导入到项目
 
-## 3. プロジェクトへの導入
+* [Eclipse项目导入方法](/lang/cn/doc/integration/eclipse)
 
-* [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+## 依赖库
 
-## 依存ライブラリ
-
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
+贵公司的App如果没有使用下面的库，需要另外导入。
 
 |名称|導入手順|
 |:--|:--|
-|Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「libs」ディレクトリ配下に設置してください。|
-* [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
+|Google Play Services|[官网](https://developers.google.com/android/guides/setup)  （不使用AdvertisingId的情况下非必要）|
+|Android Asynchronous Http Client|下载[库](http://loopj.com/android-async-http/)拷贝到「Plugins」目录下。|
+* [Google Play Services导入方法](/lang/cn/doc/google_play_services)
+* [Android Asynchronous Http Client导入方法](/lang/cn/doc/async_http)
 
-## AndroidManifest.xmlの編集
+## 编辑AndroidManifest.xml
 
-AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
+参照Assets/Plugins/Android/AndroidManifest.xml，拷贝以下内容。
 
-### * パーミッションの設定
+### * 权限配置
 
-　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
-　<Manifest>タグ内に次のパーミッションの設定を追加します。
+　追加SDK运行的必要权限到AndroidManifest.xml。  
+　<Manifest>里追加下面的权限。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -46,13 +45,18 @@ AndroidManifest.xmlを参照し、以下の内容をコピーしてください�
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
 
-### * アクティビティの設定
+### * activity配置
 
 ```xml
 <activity
-  android:name="net.orcaz.sdk.Orca"
+  android:name="net.orcaz.sdk.unity.MainActivity"
   android:configChanges="orientation|keyboardHidden|screenSize"
   android:hardwareAccelerated="true">
+</activity>
+<activity
+    android:name="net.orcaz.sdk.Orca"
+    android:configChanges="keyboardHidden|orientation|screenSize"
+    android:hardwareAccelerated="true" >
 </activity>
 <activity
   android:name="net.orcaz.sdk.review.WebDialog"
@@ -72,26 +76,26 @@ AndroidManifest.xmlを参照し、以下の内容をコピーしてください�
 
 <service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
-
-### * 画面回転の設定
-
-iOSアプリの場合、貴社アプリの回転設定に従って動作します。
-
-Androidアプリの場合、画面の回転の設定については`AndroidManifest.xml`の`android:configChanges`を編集してください。
-
-### * Google Play Servicesを利用するための設定
-　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
-　**android:valueの値に対しては適切なバージョン番号を設定してください。**
+### * 使用Google Play Services请款下的配置
+　追加SDK运行的必要权限到AndroidManifest.xml。   
+　**对android:value设置适当的版本号。**
 
 ```xml
 <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
 ```
 
-## ProGuardを利用する場合
+## * 画面旋转配置
 
-ProGuard を利用してアプリケーションの難読化を行う際は ORCA SDK のメソッドが対象とならない
-よう、以下の設定を追加してください。
+iOS App的情况下，与贵公司App画面旋转的设定保持一致。
+Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`配置画面旋转
+
+
+## 使用ProGuard的情况
+
+
+使用ProGuard对程序进行代码混淆的时候，需要禁止对 ORCA SDK 的方法做代码混淆，需要追加下面的配置。
+
 
 ```prolog
 -keepattributes *Annotation*
@@ -100,19 +104,21 @@ ProGuard を利用してアプリケーションの難読化を行う際は O
 -keep class net.orcaz.sdk.** { *; }
 ```
 
-また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+另外，导入GooglePlayServiceSDK的情况下，参考下面的页面配置keep值。
 
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+[Google Play Services导入时使用Proguard](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 
-## 4. SDK機能の実装
+## 4. SDK功能使用
 
-### 4-1. アプリ起動時
+通过用C#脚本调用定义好的函数名来使用SDK的功能。
 
-**アプリケーションの起動時** にクライアントID・アプリケーションIDを設定する実装を行ってください。  
-各種IDは弊社より別途（ヒアリングシート等で）ご連絡致します。
+### 4-1. App启动
 
-[実装例]
+**程序启动时** 请设置clientID和applicationID。  
+ID的发行请联系本社。
+
+[导入实例]
 
 ```java
 
@@ -123,125 +129,120 @@ public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     Orca.configure(
-      this,                               // アクティビティ
-      "86b8094d44c175850b18ec31eb9adf71", // クライアントID
-      "d1d1b00e741d2417a4a1f55b1eda5bed"  // アプリケーションID
+      this,                               // activity
+      "86b8094d44c175850b18ec31eb9adf71", // clientID
+      "d1d1b00e741d2417a4a1f55b1eda5bed"  // applicationID
     );
 }
 ```
 
-|パラメータ|内容|必須|備考|
+|参数|内容|必须|备注|
 |:------|:------|:------|:------|
-|第１引数|アクティビティ|必須|アプリケーションのアクティビティを設定してください。<br/>|
-|第２引数|クライアントID|必須|弊社で発行しご連絡致します。<br/>|
-|第３引数|アプリケーションID|必須|弊社で発行しご連絡致します。<br/>※ iOSとAndroid共通で利用可能|
+|第1个参数|activity|必须|Application的activity|
+|第2个参数|clientID|必須|联系本社发行。<br/>|
+|第3个参数|applicationID|必須|联系本社发行。<br/>※ iOS和Android通用|
 
+### 4-2. 显示游戏攻略的浮动图标
 
-### 4-2. 攻略情報フロートアイコン表示要求
+想在贵公司的游戏画面上显示**游戏攻略的浮动图标**时，执行以下步骤。  
+pageID、sceneID请联系本社发行。  
+pageID可以设置也可以不设置，不设置的情况下不提供下面的功能。  
+・统计每个page的攻略访问次数  
+・每个page的浮动图标变更  
 
-貴社アプリ画面上に**攻略情報フロートアイコン**を表示したいタイミングで実行するよう実装を行ってください。  
-ページID、シーンIDは弊社より別途（ヒアリングシート等で）ご連絡致します。  
-ページIDの指定は任意です。ページIDを指定しない場合は以下の機能が行えません。  
-・ページ単位での攻略情報の表示数等の集計  
-・ページ単位でのフロートアイコンの変更  
-
-[実装例]
-
-```java
-Orca.showFloatIcon(
-  this,                               // アクティビティ
-  "d4dc9737ecb40d25d1bc5b8a1f7798d4", // ページID
-  "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // シーンID（攻略情報が複数ある場合の例）
-  "レベル1",                           // ユーザレベル
-  "15",                                // ユーザ経験値
-  "勇者"                               // ユーザ設定キャラ
-  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
-);
-```
-
-[実装例（配信制御を利用しない場合）]
+[导入实例]
 
 ```java
 Orca.showFloatIcon(
-  this,                                // アクティビティ
-  "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
-  "65928b3ceeb3e9cb24d917e5532ad332",  // シーンID（攻略情報が1つだけの場合の例）
-  "",                                  // ユーザレベル
-  "",                                  // ユーザ経験値
-  "",                                  // ユーザ設定キャラ
-  ""                                   // 任意項目
+  this,                               // acitivity
+  "d4dc9737ecb40d25d1bc5b8a1f7798d4", // pageID
+  "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // sceneID（有多个攻略的情况）
+  "レベル1",                           // 用户等级
+  "15",                                // 用户经验值
+  "勇者",                              // 用户角色
+  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意项目
 );
 ```
 
-#### 攻略情報フロートアイコンの表示を切り替える
-
-貴社アプリの画面切り替え等のタイミングで、呼び出し地点のページID・シーンIDを指定し
-「4-2. 攻略情報フロートアイコン表示要求」を実行してください。
-既に表示中の攻略情報フロートアイコンを破棄し、新たにフロートアイコンを表示します。
-
-#### 攻略情報フロートアイコンのデザインを設定する
-
-ヒアリングシート等で、各ページでご使用するアイコンデザイン、サイズ、画像をお伺いの上、配信システムに登録致します。
-
-#### 攻略情報フロートアイコンを非表示にする
-
-一度呼び出した攻略情報フロートアイコンを非表示にするには、シーンIDを指定しない状態で
-「4-2. 攻略情報フロートアイコン表示要求」を実行してください。
-
-
-[実装例]
+[导入实例（不设置过滤条件的情况）]
 
 ```java
 Orca.showFloatIcon(
-  this,                                // アクティビティ
-  "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
-  "",                                  // シーンID（指定なし）
-  "",                                  // ユーザレベル
-  "",                                  // ユーザ経験値
-  "",                                  // ユーザ設定キャラ
-  ""                                   // 任意項目
+  this,                                // acitivity
+  "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // pageID
+  "65928b3ceeb3e9cb24d917e5532ad332",  // sceneID（攻略情報が1つだけの場合の例）
+  "",                                  // 用户等级
+  "",                                  // 用户经验值
+  "",                                  // 用户角色
+  ""                                   // 任意项目
 );
 ```
 
+#### 攻略浮动图标变更
 
-|パラメータ|内容|必須|備考|
+游戏画面切换时，调用函数并指定pageID、sceneID，参考「4-2. 显示游戏攻略的浮动图标」。
+已经显示在画面上的图标会被删除，显示新的浮动图标。
+
+#### 自定义攻略浮动图标
+
+准备好每个page图标的设计、尺寸、图片，在本公司的系统页面上传。
+
+#### 隐藏示攻略浮动图标
+
+想隐藏已经显示在画面上的攻略浮动图标的话，不指定scenceID再执行「4-2. 显示游戏攻略的浮动图标」的步骤。
+
+
+[导入案例（隐藏浮动图标）]
+
+```java
+Orca.showFloatIcon(
+  this,                                // acitivity
+  "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // pageID
+  "",                                  // sceneID（有多个攻略的情况））
+  "",                                  // 用户等级
+  "",                                  // 用户经验值
+  "",                                  // 用户角色
+  ""                                   // 任意项目
+);
+```
+
+|参数|内容|必须|备注|
 |:------|:------|:------|:------|
-|第１引数|アクティビティ|必須|アプリケーションのアクティビティを設定してください。<br/>|
-|第２引数|ページID|任意|弊社で発行しご連絡致します。<br/>※ iOSとAndroid共通で利用可能|
-|第３引数|シーンID|任意|弊社で発行しご連絡致します。<br/>複数取得の場合は、" &#124; "区切りで設定（10個まで）<br/>指定なしの場合、表示中の攻略情報フロートアイコンを非表示にします。<br/>※ iOSとAndroid共通で利用可能|
-|第４引数|ユーザレベル|任意|ユーザレベルで配信制御を行う場合は設定してください。<br/>（設定しない場合は空文字を設定）|
-|第５引数|ユーザ経験値|任意|ユーザ経験値で配信制御を行う場合は設定してください。<br/>（設定しない場合は空文字を設定）|
-|第６引数|ユーザ設定キャラ|任意|ユーザ設定キャラで配信制御を行う場合は設定してください。<br/>（設定しない場合は空文字を設定）|
-|第７引数|任意項目|任意|任意項目をJSON形式にて設定して下さい。 <br/>（設定しない場合は空文字を設定）|
+|第1个参数|activity|必须|Application的activity|
+|第2个参数|pageID|可选|联络本公司发行。<br/>※ iOS和Android通用|
+|第3个参数|sceneID|可选|联络本公司发行。<br/>多个sceneID的情况下、用" &#124; "间隔（最大20个）<br/>不指定sceneID的情况下，将隐藏攻略浮动图标<br/>※ iOS和Android通用|
+|第4个参数|用户等级|可选|以用户等级过滤攻略。<br/>（不设定等情况下，传入空字符串）|
+|第5个参数|用户经验值|可选|以用户经验值过滤攻略。<br/>（不设定等情况下，传入空字符串）|
+|第6个参数|用户角色|可选|以用户角色过滤攻略。<br/>（不设定等情况下，传入空字符串）|
+|第7个参数|任意項目|可选|以json格式传入任意项目。 <br/>（不设定等情况下，传入空字符串）|
 
-【任意項目について】  
-設定可能な任意項目は下記をご覧ください。  
-任意項目は下記以外にも追加可能です。追加を希望する場合は、別途ご相談下さい。  
-任意項目にマルチバイト文字を使用する場合、スクリプトファイルの文字コードをUTF-8(BOM付き)に変更して下さい。
+【关于任意项目】  
+设定任意项目请参考下面条款。  
+下面的表格以外的项目可以以任意项目的形式指定。如果希望追加项目，可联系本公司商谈。  
+任意项目里面包含多字节字符的情况下，脚本的编码格式需要设定为UTF-8（带BOM）。
 
-|任意項目名|key|設定内容|
+|任意項目名|key|设定值|
 |:------|:------|:------|
-|ユーザID|puid   |ゲーム内のユーザIDを設定|
-|ユーザ名|pname  |ゲーム内のユーザ名称を設定|
-|対戦ボスキャラ名|bchar  |ゲーム内のボスキャラ名称を設定|
-|レベル(ランク)|level  |ユーザのレベル数値または名称を設定|
-|経験値|exp  |ユーザの経験値数値または名称を設定|
-|設定キャラクタ名|char  |設定しているキャラクタ名を設定|
-|HP|hp  |キャラクタのHP数値または名称を設定|
-|スタミナ|stm  |キャラクタのスタミナ数値または名称を設定|
-|攻撃力|power  |キャラクタの攻撃力数値または名称を設定|
-|利用もしくは設定装備/武器関連名|item  |キャラクタの装備・武器などの名称を設定|
+|用户ID|puid   |游戏中的用户ID|
+|用户名|pname  |游戏中的用户名|
+|boss名|bchar  |游戏中的boss名|
+|等级(排名)|level  |用户等级或者等级称为之类|
+|经验值|exp  |用户经验值或者称为|
+|角色名|char  |用户游戏角色名称|
+|HP|hp  |游戏人物HP|
+|体力|stm  |游戏人物体力值|
+|攻击力|power  |游戏人物攻击力|
+|装备/武器名|item  |游戏人物武器、装备名称|
 
-※各項目は最大128桁まで設定可能です。  
+※各項目最大输入128字。  
 
+### 4-3. App后台运行和重新转入前台运行
 
-### 4-3. アプリ離脱時と復帰時
+App后台运行和重新转入前台运行时，控制画面上攻略浮动图标的显示。
 
-アプリ離脱時と復帰時に、攻略情報フロートアイコン表示／非表示を制御します。
+后台运行后转入前台运行的时候，需要重新调用SDK函数。
 
-離脱時、復帰時にSDKを呼び出す実装を行ってください。
-
-[実装例]
+[导入实例]
 
 ```java
 @Override
@@ -255,47 +256,49 @@ public void onPause() {
 }
 ```
 
-## 5. SDK導入後のテスト
+## 5. SDK导入后测试
 
-### 5-1. 確認事項
+### 5-1. 确认事项
 
-マーケットへの申請までに、SDKを導入した状態でテストを行い、アプリケーションの動作に問題がないことを確認してください。
+申请上线前，请测试导入的SDK的状态，以及各功能是否可以正常运行。
 
-1. テスト用端末にて対象アプリを起動
-1. **攻略情報** を呼び出す地点(シーンまたはステージ)まで画面遷移する
-1. **フロートアイコン** を表示する
-1. **フロートアイコン** をタップして攻略情報を表示する
-1. **攻略情報** を閉じる
+1. 用测试机启动导入SDK的App
+1. 到 **游戏攻略** 画面
+1. 显示 **浮动图标**
+1. 点击 **浮动图标** 后显示游戏攻略
+1. 关闭 **攻略情報** 画面
 
-弊社へテスト実行時間をお伝えください。正常にSDK機能が動作しているかログ等で確認致します。  
-弊社側の確認にて問題がなければテスト完了となります。
 
-### 5-2. デバッグモードについて
+通知本公司贵社的测试日期。我们将通过肩擦日志文件确认SDK的功能有没有正常被调用。  
+本公司确认之后，没有问题后，测试结束。
 
-テスト時の確認等の為にデバッグモードをご用意しております。
 
-【デバッグモードの動作】
+### 5-2. 关于调试模式
 
-* 配信制御は行われず、サンプルサイト及びサンプル動画が配信されます。  
-* 開発環境の標準出力にログが出力されます。
+我们提供了测试时确认用的调试模式
 
-|デバッグモードシーン|シーンID|
+【调试模式功能】
+
+* 不执行过滤的情况下、接收测试网页以及测试视频。  
+* 把开发环境的标准输出写入日志。
+
+|调试模式scene|sceneID|
 |:------|:------|
-|シーン1|fc7f24abc577f37d44b6fb0095dcd976|
-|シーン2|aee4857751950eee5441057d436e506a|
-|シーン3|ea0a160b2a496c33efe0c9511f61b34f|
-|シーン4|c0f7d3256b91dc80faab2d0ca34696e6|
-|シーン5|a3c9cc0625a56a2f9abb1400f2e17f80|
-|シーン6|46d8ca247c7cdd3f81c0649b1bc3c2fc|
-|シーン7|f576372b68c175cb52730f05a510eb86|
-|シーン8|3ae0fa5850a7ef180b56617f271124a7|
-|シーン9|a353d25ddc95549b6bb848fbf6401510|
-|シーン10|a63b500d519653e2306c77213ef91eb9|
+|scene1|fc7f24abc577f37d44b6fb0095dcd976|
+|scene2|aee4857751950eee5441057d436e506a|
+|scene3|ea0a160b2a496c33efe0c9511f61b34f|
+|scene4|c0f7d3256b91dc80faab2d0ca34696e6|
+|scene5|a3c9cc0625a56a2f9abb1400f2e17f80|
+|scene6|46d8ca247c7cdd3f81c0649b1bc3c2fc|
+|scene7|f576372b68c175cb52730f05a510eb86|
+|scene8|3ae0fa5850a7ef180b56617f271124a7|
+|scene9|a353d25ddc95549b6bb848fbf6401510|
+|scene10|a63b500d519653e2306c77213ef91eb9|
 
-テスト完了後は、弊社にてデバッグモードを解除し運用モードとなります。
+测试结束后，本社将解除SDK的调试模式，变成运营模式。
 
 ----
 
-SDK導入に関してお困りの際は、下記のメール宛先にお問い合わせください。
+导入SDK的时候，如果有什么问题，请发送邮件到下面的地址咨询。
 
-問い合わせ先：z-mediadev@cyber-z.co.jp
+咨询邮箱：z-mediadev@cyber-z.co.jp
