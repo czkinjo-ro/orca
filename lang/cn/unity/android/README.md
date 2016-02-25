@@ -1,6 +1,6 @@
-# Androidプロジェクトの設定
+# Android项目的配置
 
-## パッケージ構成
+## package结构
 * Assets/
   * Plugins/
     * `Orca.cs`
@@ -9,29 +9,29 @@
       * `AndroidManifest.xml`
       * res/
 
-UnityPackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
+UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里。
 
-* [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+* [Eclipse项目导入方法](/lang/cn/doc/integration/eclipse)
 
-## 依存ライブラリ
+## 依赖库
 
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
+贵公司的App如果没有使用下面的库，需要另外导入。
 
 |名称|導入手順|
 |:--|:--|
-|Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
-* [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
+|Google Play Services|[官网](https://developers.google.com/android/guides/setup)  （不使用AdvertisingId的情况下非必要）|
+|Android Asynchronous Http Client|[下载](http://loopj.com/android-async-http/)拷贝到「Plugins」目录下。|
+* [Google Play Services导入方法](/lang/cn/doc/google_play_services)
+* [Android Asynchronous Http Client导入方法](/lang/cn/doc/async_http)
 
-## AndroidManifest.xmlの編集
+## 编辑AndroidManifest.xml
 
-Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコピーしてください。
+参照Assets/Plugins/Android/AndroidManifest.xml，拷贝以下内容。
 
-### * パーミッションの設定
+### * 权限配置
 
-　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
-　<Manifest>タグ内に次のパーミッションの設定を追加します。
+　追加SDK运行的必要权限到AndroidManifest.xml。  
+　<Manifest>里追加下面的权限。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -40,7 +40,7 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
 
-### * アクティビティの設定
+### * activity配置
 
 ```xml
 <activity
@@ -71,25 +71,26 @@ Assets/Plugins/Android/AndroidManifest.xmlを参照し、以下の内容をコ�
 
 <service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
-### * Google Play Servicesを利用するための設定
-　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。  
-　**android:valueの値に対しては適切なバージョン番号を設定してください。**
+### * 使用Google Play Services请款下的配置
+　追加SDK运行的必要权限到AndroidManifest.xml。   
+　**对android:value设置适当的版本号。**
 
 ```xml
 <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
 ```
 
-## * 画面回転の設定
+## * 画面旋转配置
 
-iOSアプリの場合、貴社アプリの回転設定に従って動作します。
+iOS App的情况下，与贵公司App画面旋转的设定保持一致。
+Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`配置画面旋转
 
-Androidアプリの場合、画面の回転の設定については`AndroidManifest.xml`の`android:configChanges`を編集してください。
 
-## ProGuardを利用する場合
+## 使用ProGuard的情况
 
-ProGuard を利用してアプリケーションの難読化を行う際は ORCA SDK のメソッドが対象とならない
-よう、以下の設定を追加してください。
+
+使用ProGuard对程序进行代码混淆的时候，需要禁止对 ORCA SDK 的方法做代码混淆，需要追加下面的配置。
+
 
 ```prolog
 -keepattributes *Annotation*
@@ -99,9 +100,10 @@ ProGuard を利用してアプリケーションの難読化を行う際は O
 ```
 
 また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+另外，导入GooglePlayServiceSDK的情况下，请确认下面的页面中记载的keep指定有没有被记录。
 
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+[Google Play Services导入时使用Proguard](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 ----
 
-[TOPへ](/lang/ja/unity/README.md)
+[TOPへ](/lang/cn/unity/README-float.md)
