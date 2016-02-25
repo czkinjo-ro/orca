@@ -1,37 +1,37 @@
-## Google Play Services SDKの取得
+## 取得Google Play Services SDK
 
-以下に、2014年11月時点での、Google Play Services SDKの導入方法を記載致します。
-Google Play Services SDKをインストールしていない場合は、Android SDK Managerからパッケージを取得します。
+以下是2014年11月以后Google Play Services SDK的导入方法。
+没有安装Google Play Services的情况下，从Android SDK Manager获得安装包。
 
-* Android SDK Managerを起動します。
-* Extrasディレクトリ配下のGoogle Play servicesにチェックをいれ、パッケージをインストールします。
+* 启动Android SDK Manager。
+* 勾选Extras下的Google Play services，安装。
 
 
 ![google_play_services01](./img05.png)
 
 
-## google-play-services.jarの取得
+## 取得google-play-services.jar
 
-以下のPATHで「google-play-services.jar」を取得してください。
+访问下面的路径获取「google-play-services.jar」。
 
 
 {android-sdk}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar
 
 
-## Google Play Servicesの導入
+## 导入Google Play Services
 
-取得した「google-play-services.jar」を外部jarとして追加する方法は以下の通りで雨s。
+取得的「google-play-services.jar」以外部jar的形式导入工程。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下に「google-play-services.jar」をコピー
+* 拷贝「google-play-services.jar」到项目工程中「libs」文件下
 
 
 ![google_play_services02](./img06.png)
 
 
-* アプリケーションを選択し、右クリック>「プロパティ」を選択するとプロパティウィンドウが立ち上がる
-* プロパティウィンドウの左のメニューから「Javaのビルド・パス」を選択
-* プロパティウィンドウの右側の「ライブラリー」タブを選択し、「Jar追加」を選択します
-* アプリケーションの「libs」フォルダに配置した「google-play-services.jar」を選択する
+* 选择Aplication，右键选择【property】打开Property窗口
+* 选择Property窗口左侧菜单【Java Build Path]
+* 点击Propety窗口右侧的【Library]标签，选择【Add Jar...]
+* 选择Application的【libs】下面「google-play-services.jar」文件
 
 
 ![google_play_services03](./img07.png)
