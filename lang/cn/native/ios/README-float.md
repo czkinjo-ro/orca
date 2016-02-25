@@ -1,40 +1,39 @@
-# みんなの攻略情報 iOS SDK導入手順
+# 大家的游戏攻略 iOS SDK 导入手册
 
-### 1-1. 動作環境
- * iOS 6.0 以降
+### 1-1. 运行环境
+ * iOS 6.0 以上
 
-### 1-2. 用語
+### 1-2. 术语
 
- * **"シーン"**  
-本プロジェクトでは表示する攻略情報の各クエスト、ステージ、イベント等を「シーン」と呼称します。
+ * **"scene"**  
+这个项目中游戏攻略的各个任务，关卡、活动等统称为“scene”。
 
-* **"ページ"**  
-貴社アプリの攻略情報を呼び出す画面の単位を「ページ」と呼称します。
+* **"page"**  
+贵公司游戏中打开的攻略画面被称为"page"。
 
-## 2. SDKのダウンロード
+## 2. 下载SDK
 
-準備中
+正在准备
 
-## 3. プロジェクトへの導入
+## 3. 导入到项目
 
-貴社アプリのXCodeプロジェクトへOrcaSDKのフレームワークを追加します。
+把OracSDK程序导入到贵公司的XCode项目中
 
-* [OrcaSDKの追加方法](./xcode/README.md)
+* [OrcaSDK导入方法](./xcode/README.md)
 
-## 依存ライブラリ
+## 依赖库
 
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
+贵公司的App如果没有使用下面的库，需要另外导入。
 
 |名称|Status|
 |:--|:--|
 |AdSupport.framework|Required|
 |Systemconfiguration.framework|Required|
 |Security.framework|Required|
+* [AdSupport的导入方法(Systemconfiguration和Security同样)](./adsupport/README.md)
 
-* [AdSupportの導入方法(SystemconfigurationとSecurityも同様)](./adsupport/README.md)
 
-
-## Bridging Headerの編集（Swiftの場合）
+## 编辑Bridging Header（Swift）
 SwiftにてOrcaSDKを利用するにはBridging Headerにてインポートする必要があります。
 プロジェクトにBridging Headerがない場合は新たに作成します。
 

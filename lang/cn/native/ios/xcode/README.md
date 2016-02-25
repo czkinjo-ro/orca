@@ -1,8 +1,8 @@
-## Xcodeプロジェクトへの導入
+## 导入Xcode
 
-Xcodeプロジェクトへ「OrcaSDK.framework」を外部Frameworkとして追加する方法は以下の通りです。
+以外部Framework的形式导入「OrcaSDK.framework」到Xcode项目中。
 
-* アプリケーションプロジェクトの「proj.ios_mac/ios/framework」フォルダー配下に「OrcaSDK.framework」をコピーした後、プロジェクトへドラッグ＆ドロップする。
+* 拷贝「OrcaSDK.framework」到Application项目「proj.ios_mac/ios/framework」文件下。
 
 ![integration01](./img01.png)
 
