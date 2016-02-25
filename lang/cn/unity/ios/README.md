@@ -18,7 +18,7 @@ UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里
 |AdSupport.framework|Required|
 |Systemconfiguration.framework|Required|
 |Security.framework|Required|
-* [AdSupportの導入方法(SystemconfigurationとSecurityも同様)](./adsupport/README.md)
+* [AdSupport的导入方法(Systemconfiguration和Security同样)](./adsupport/README.md)
 
 ## 编辑UnityAppController.mm
 在从Unity导出的Xcode项目中的UnityAppController.mm文件中写入下面代码。
