@@ -21,3 +21,10 @@
  * [Unity](./lang/ko/unity/)
  * [Unity WebView](./lang/ko/unity/WebView/)
  * [Cocos2d-x](./lang/ko/cocos2dx/)
+
+### 中文版（Chinese)
+ * 游戏攻略浮动图标功能导入
+  * [Android](./lang/cn/native/android/README-float.md)
+  * [iOS](./lang/cn/native/ios/README-float.md)
+  * [Unity](./lang/cn/unity/README-float.md)
+  * [Cocos2d-x](./lang/cn/cocos2dx/README-float.md)
