@@ -71,7 +71,7 @@ UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里
 
 <service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
-### * 使用Google Play Services请款下的配置
+### * 使用Google Play Services情况下的配置
 　追加SDK运行的必要权限到AndroidManifest.xml。   
 　**对android:value设置适当的版本号。**
 

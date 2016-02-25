@@ -76,7 +76,7 @@
 
 <service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
-### * 使用Google Play Services请款下的配置
+### * 使用Google Play Services情况下的配置
 　追加SDK运行的必要权限到AndroidManifest.xml。   
 　**对android:value设置适当的版本号。**
 
@@ -87,7 +87,7 @@
 
 ## * 画面旋转配置
 
-iOS App的情况下，与贵公司App画面旋转的设定保持一致。
+iOS App的情况下，与贵公司App画面旋转的设定保持一致。  
 Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`配置画面旋转
 
 
