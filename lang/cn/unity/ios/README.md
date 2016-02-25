@@ -1,17 +1,17 @@
-# iOSプロジェクトの設定
+# iOS项目配置
 
-## パッケージ構成
+## package结构
 * Assets/
   * Plugins/
     * `Orca.cs`
     * iOS/
       * `OrcaSDK.framework`
 
-UnityPackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
+UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里。
 
-## 依存ライブラリ
+## 依赖库
 
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
+贵公司的App如果没有使用下面的库，需要另外导入。
 
 |名称|Status|
 |:--|:--|
@@ -20,18 +20,16 @@ UnityPackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 |Security.framework|Required|
 * [AdSupportの導入方法(SystemconfigurationとSecurityも同様)](./adsupport/README.md)
 
-## UnityAppController.mmの編集
-Unityによって出力されたXcodeのプロジェクトに含まれるUnityAppController.mmに
-以下のコードを追加します。
-
-#### * Orcaヘッダをインポート。
+## 编辑UnityAppController.mm
+在从Unity导出的Xcode项目中的UnityAppController.mm文件中写入下面代码。
+#### * 导入Orca头文件。
 
 
 ```objectivec
  #import "OrcaSDK/Orca.h"
 ```
 
-#### * -(void)applicationDidEnterBackground:内に[Orca setBackground:YES];を追加。
+#### * -(void)applicationDidEnterBackground:里追加[Orca setBackground:YES];
 
 ```objectivec
 - (void)applicationDidEnterBackground:(UIApplication*)application
@@ -41,8 +39,7 @@ Unityによって出力されたXcodeのプロジェクトに含まれるUnityAp
 }
 ```
 
-#### * -(void)applicationWillEnterForeground:内に[Orca setBackground:NO];を追加。
-
+#### * -(void)applicationWillEnterForeground:里追加[Orca setBackground:NO];
 ```objectivec
 - (void)applicationWillEnterForeground:(UIApplication*)application
 {
@@ -53,4 +50,4 @@ Unityによって出力されたXcodeのプロジェクトに含まれるUnityAp
 
 ----
 
-[TOPへ](/lang/ja/unity/README.md)
+[TOPへ](/lang/cn/unity/README.md)

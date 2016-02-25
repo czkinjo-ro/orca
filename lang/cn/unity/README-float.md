@@ -28,7 +28,7 @@
 
 把UnityPackage文件导入到项目中。
 
- [Unity项目导入方式](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
+ [Unity项目导入方式](http://docs.unity3d.com/Manual/)
 
 ### 各种OS的配置
 * [iOS项目配置](./ios/README.md)
