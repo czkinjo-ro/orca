@@ -36,7 +36,7 @@
 ### * 权限配置
 
 　追加SDK运行的必要权限到AndroidManifest.xml。  
-　<Manifest>里追加下面的权限。
+　&lt;Manifest>里追加下面的权限。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
