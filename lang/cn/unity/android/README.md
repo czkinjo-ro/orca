@@ -82,14 +82,14 @@ UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里
 
 ## * 画面旋转配置
 
-iOS App的情况下，与贵公司App画面旋转的设定保持一致。
+iOS App的情况下，与贵公司App画面旋转的设定保持一致。  
 Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`配置画面旋转
 
 
 ## 使用ProGuard的情况
 
 
-使用ProGuard对程序进行代码混淆的时候，需要禁止对 ORCA SDK 的方法做代码混淆，需要追加下面的配置。
+使用ProGuard对程序进行代码混淆的时候，需要禁止对 ORCA SDK 的方法做代码混淆，请追加下面的配置。
 
 
 ```prolog
