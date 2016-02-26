@@ -1,6 +1,6 @@
 ## 取得Google Play Services SDK
 
-以下是2014年11月当时的Google Play Services SDK的导入方法。
+以下是2015年8月当时的Google Play Services SDK的导入方法。
 没有安装Google Play Services的情况下，从Android SDK Manager获得安装包。
 
 * 启动Android SDK Manager。
