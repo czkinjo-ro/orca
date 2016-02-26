@@ -1,6 +1,6 @@
 ## 取得Google Play Services SDK
 
-以下是2014年11月以后Google Play Services SDK的导入方法。
+以下是2014年11月当时的Google Play Services SDK的导入方法。
 没有安装Google Play Services的情况下，从Android SDK Manager获得安装包。
 
 * 启动Android SDK Manager。
@@ -30,7 +30,7 @@
 
 * 选择Aplication，右键选择【property】打开Property窗口
 * 选择Property窗口左侧菜单【Java Build Path】
-* 点击Propety窗口右侧的【Library]标签，选择【Ad Jar...】
+* 点击Propety窗口右侧的【Library]标签，选择【Add Jar...】
 * 选择Application的【libs】下面「google-play-services.jar」文件
 
 

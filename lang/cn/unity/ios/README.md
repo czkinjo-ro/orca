@@ -7,7 +7,7 @@
     * iOS/
       * `OrcaSDK.framework`
 
-UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里。
+UnityPackage中「Assets/Plugins」里面的对象导入到项目里。
 
 ## 依赖库
 

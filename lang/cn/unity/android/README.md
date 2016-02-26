@@ -9,7 +9,7 @@
       * `AndroidManifest.xml`
       * res/
 
-UnityPackage中「Assets/Plugins」里面的の的文件对象拷贝到项目里。
+UnityPackage中「Assets/Plugins」里面的文件对象导入到项目里。
 
 * [Eclipse项目导入方法](/lang/cn/doc/integration/eclipse)
 
