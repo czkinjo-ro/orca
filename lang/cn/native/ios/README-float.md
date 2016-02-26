@@ -138,7 +138,7 @@ pageID可以设置也可以不设置，不设置的情况下不提供下面的�
 ・统计每个page的攻略访问次数  
 ・每个page的浮动图标变更  
 
-[导入实例]（Swiftの場合）
+[导入实例]（Swift）
 
 ```swift
 Orca.showFloatIcon(
@@ -151,7 +151,7 @@ Orca.showFloatIcon(
 );
 ```
 
-[実装例（配信制御を利用しない場合）]（Swiftの場合）
+[実装例（配信制御を利用しない場合）]（Swift）
 
 ```swift
 Orca.showFloatIcon(
@@ -179,7 +179,7 @@ Orca.showFloatIcon(
 想隐藏已经显示在画面上的攻略浮动图标的话，不指定scenceID再执行「4-2. 显示游戏攻略的浮动图标」的步骤。
 
 
-[実装例]（Swiftの場合）
+[実装例]（Swift）
 
 ```swift
 Orca.showFloatIcon(
