@@ -1,17 +1,17 @@
-## Eclipseプロジェクトへの導入
+## 导入Eclipse项目
 
-Eclipseプロジェクトへ「orca-androidsdk.jar」を外部jarとして追加する方法は以下の通りです。
+按照下面步骤向Eclipse项目导入「orca-androidsdk.jar」文件。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下に「orca-androidsdk.jar」をコピー
+* 拷贝「orca-androidsdk.jar」到项目工程中「libs」文件下。
 
 
 ![integration01](./img01.png)
 
 
-* アプリケーションを選択し、右クリック>「プロパティ」を選択するとプロパティウィンドウが立ち上がる
-* プロパティウィンドウの左のメニューから「Javaのビルド・パス」を選択
-* プロパティウィンドウの右側の「ライブラリー」タブを選択し、「Jar追加」を選択します
-* アプリケーションの「libs」フォルダに配置した「orca-androidsdk.jar」を選択する
+* 选择Aplication，右键选择【property】打开Property窗口
+* 选择Property窗口左侧菜单【Java Build Path】
+* 点击Propety窗口右侧的【Library]标签，选择【Ad Jar...】
+* 选择Application的【libs】下面「orca-androidsdk.jar」文件
 
 
 ![integration02](./img02.png)
