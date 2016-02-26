@@ -1,10 +1,10 @@
-## Bridging Headerの指定方法
+## Bridging Header指定方法
 
-Xcodeプロジェクトのターゲットへ作成済みのBridging Headerを指定する方法は以下の通りです。
+按照下面步骤给Xcode项目的targe指定创建好的Bridging Header。
 
-1. 対象Target設定の"Build Settings"タブを表示する。
-2. 検索窓に "Bridging" と入力する。
-3. "Objective-C Bridging Header"項目に作成したファイル名を指定する。
+1. 选择对象Target设定的"Build Settings"标签。
+2. 输入"Bridging"到搜索框。
+3. 在"Objective-C Bridging Header"选项里指定创建好的文件名。
 
 ![bridging_header01](./img01.png)
 

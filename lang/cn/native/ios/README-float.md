@@ -34,29 +34,29 @@
 
 
 ## 编辑Bridging Header（Swift）
-SwiftにてOrcaSDKを利用するにはBridging Headerにてインポートする必要があります。
-プロジェクトにBridging Headerがない場合は新たに作成します。
+在Swift项目中使用OrcaSDK需要导入Bridging Header。
+项目中没有Bridging Header的情况下需要创建Bridging Header。
 
-#### * Bridging Headerの例（ファイル名：Sample_Native_iOS-Bridging-Header.h）
+#### * Bridging Header的例子（文件名：Sample_Native_iOS-Bridging-Header.h）
 
 ```objectivec
 #ifndef Sample_Native_iOS_Bridging_Header_h
 #define Sample_Native_iOS_Bridging_Header_h
 
-#import "OrcaSDK/Orca.h" // <- 既にブリッジヘッダがある場合はこの行を追加。
+#import "OrcaSDK/Orca.h" // <- 已经有Bridging Header的情况下追加这一行。
 
 #endif /* Sample_Native_iOS_Bridging_Header_h */
 ```
 
-新たにBridging Headerを作成した場合、プロジェクトに対してBridging Headerを指定する必要がありあります。
+创建Bridging Header的情况下，对项目需要制定Bridging Header。
 
-* [Bridging Headerの指定方法](./bridging_header/README.md)
+* [Bridging Header指定方法](./bridging_header/README.md)
 
 
-## UIApplicationDelegateの編集（Swiftの場合）
-XCodeによって出力されたプロジェクトに含まれるAppDelegate.m等、UIApplicationDelegateを継承したクラスへ以下のコードを追加します。
+## 编辑UIApplicationDelegate（Swift）
+从XCode导出的项目里继承自AppDelegate.m、UIApplicationDelegate等类的类文件中追加下面的代码。
 
-#### * applicationDidEnterBackground内にOrca.setBackground(true)を追加。
+#### * 追加applicationDidEnterBackground内にOrca.setBackground(true)。
 
 ```swift
  func applicationDidEnterBackground(application: UIApplication) {
@@ -72,10 +72,10 @@ XCodeによって出力されたプロジェクトに含まれるAppDelegate.m�
  }
 ```
 
-## UIApplicationDelegateの編集（Objective-Cの場合）
-XCodeによって出力されたプロジェクトに含まれるAppDelegate.m等、UIApplicationDelegateを継承したクラスへ以下のコードを追加します。
+## 编辑UIApplicationDelegate（Objective-C）
+从XCode导出的项目里继承自AppDelegate.m、UIApplicationDelegate等类的类文件中追加下面的代码。
 
-#### * Orcaヘッダをインポート。（Objective-Cの場合）
+#### * Orcaヘッダをインポート。（Objective-C）
 
 
 ```objectivec
