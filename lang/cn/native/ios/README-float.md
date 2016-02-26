@@ -64,7 +64,7 @@
  }
 ```
 
-#### * applicationWillEnterForeground内にOrca.setBackground(false)を追加。
+#### * 追加applicationWillEnterForegroundOrca.setBackground(false)。
 
 ```swift
  func applicationWillEnterForeground(application: UIApplication) {
@@ -82,7 +82,7 @@
  #import "OrcaSDK/Orca.h"
 ```
 
-#### * 追加-(void)applicationDidEnterBackground:内に[Orca setBackground:YES];。
+#### * 追加-(void)applicationDidEnterBackground:[Orca setBackground:YES];。
 
 ```objectivec
 - (void)applicationDidEnterBackground:(UIApplication*)application
@@ -92,7 +92,7 @@
 }
 ```
 
-#### * 追加-(void)applicationWillEnterForeground:内に[Orca setBackground:NO];。
+#### * 追加-(void)applicationWillEnterForeground:[Orca setBackground:NO];。
 
 ```objectivec
 - (void)applicationWillEnterForeground:(UIApplication*)application
