@@ -5,10 +5,10 @@
 
 ### 1-2. 术语
  * **"scene"**  
-这个项目中游戏攻略的各个任务，关卡、活动等统称为“scene”。
+在SDK中显示的关于各个任务，关卡、活动等的游戏攻略统称为“scene”。
 
 * **"page"**  
-贵公司游戏中打开的攻略画面被称为"page"。
+贵公司游戏中打开的游戏攻略的游戏画面被称为"page"。
 
 ## 2. 下载SDK
 
@@ -24,7 +24,7 @@
 
 |名称|導入手順|
 |:--|:--|
-|Google Play Services|[官网](https://developers.google.com/android/guides/setup)  （不使用AdvertisingId的情况下非必要）|
+|Google Play Services|[官网](https://developers.google.com/android/guides/setup)  （不使用AdvertisingId的情况下可以不导入）|
 |Android Asynchronous Http Client|下载[库](http://loopj.com/android-async-http/)拷贝到「Plugins」目录下。|
 * [Google Play Services导入方法](/lang/cn/doc/google_play_services)
 * [Android Asynchronous Http Client导入方法](/lang/cn/doc/async_http)
