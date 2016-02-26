@@ -1,7 +1,7 @@
 ## AdSupport导入(Unity)
 
 
-### 1. Adsupport.framework追加（Unity5以降）
+### 1. Adsupport.framework追加（Unity5以上）
 1. Unity项目里选择"OrcaSDK_for_iOS.framework"。
 2. 勾选Inspector的"Platform settings"的"Framework dependencies"里面的"Adsupport"
 
