@@ -29,8 +29,8 @@
 
 
 * 选择Aplication，右键选择【property】打开Property窗口
-* 选择Property窗口左侧菜单【Java Build Path]
-* 点击Propety窗口右侧的【Library]标签，选择【Add Jar...]
+* 选择Property窗口左侧菜单【Java Build Path】
+* 点击Propety窗口右侧的【Library]标签，选择【Ad Jar...】
 * 选择Application的【libs】下面「google-play-services.jar」文件
 
 
