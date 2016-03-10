@@ -1,9 +1,5 @@
 # 大家的游戏攻略 Unity导入手册
 
-* 大家的游戏攻略 SDK Version
-  * iOS SDK : 1.2.0
-  * Android SDK : 1.4.0
-
 ## 1. 大家的游戏攻略 Unity Plugin
 
 大家的游戏攻略 提供通过C#调用的Unity插件。

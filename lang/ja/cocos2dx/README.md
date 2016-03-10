@@ -1,16 +1,9 @@
 # みんなの攻略情報 Cocos2d-x導入手順
-* Modified: 2015-12-09
-* みんなの攻略情報 SDK Version
-  * iOS SDK : 1.0.1
-  * Android SDK : 1.3.0
 
-## 1. みんなの攻略情報 Cocos2d-x Plugin
-
-みんなの攻略情報 Cocos2d-x Pluginは、  
-Cocos2d-xで実行可能なCocos2d-x Pluginとして提供しております。
+## 1. みんなの攻略情報 Cocos2d-x ライブラリ
 
 ### 1-1. 動作環境
- * Cocos2d-x-2.1.5 以降
+ * Cocos2d-x 2.2.x, 3.x以降
  * iOS 6.0 以降
  * Android 4.2.2 以降
 
@@ -41,7 +34,7 @@ C++に定義した関数名からSDK機能の呼び出しを行います。
 [実装例]
 
 ```c++
-OrcaPlugin::configure(
+CCOrca::configure(
   "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
   "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
 );
@@ -60,7 +53,7 @@ OrcaPlugin::configure(
 [実装例]
 
 ```c++
-OrcaPlugin::getRecommendPage(
+CCOrca::getRecommendPage(
   "3ef9de9339eec72ff6ee71af1a71c156|75a3e173267a287c67c394e618775b98",  // シーンID（2個取得の場合の例）
   "レベル1",                           // ユーザレベル
   "15",                                // ユーザ経験値
@@ -71,7 +64,7 @@ OrcaPlugin::getRecommendPage(
 [実装例（配信制御を利用しない場合）]
 
 ```c++
-OrcaPlugin::getRecommendPage(
+CCOrca::getRecommendPage(
   "3ef9de9339eec72ff6ee71af1a71c156",  // シーンID（1個取得の場合の例）
   "",                                  // ユーザレベル
   "",                                  // ユーザ経験値
@@ -94,7 +87,7 @@ OrcaPlugin::getRecommendPage(
 [実装例]
 
 ```c++
-int result = OrcaPlugin::checkRecommendPage("3ef9de9339eec72ff6ee71af1a71c156");
+int result = CCOrca::checkRecommendPage("3ef9de9339eec72ff6ee71af1a71c156");
 if (result == 1) {
   // 攻略情報表示可能
   // 例えば、攻略情報表示ボタンを表示する処理コードを実装
@@ -130,17 +123,17 @@ if (result == 1) {
 [実装例]
 
 ```c++
-OrcaPlugin::showRecommendPage(
+CCOrca::showRecommendPage(
   "65928b3ceeb3e9cb24d917e5532ad332" // シーンID
-  0,                                 // クリア情報
-  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
+  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}", // 任意項目
+  0                                 // クリア情報
 );
 ```
 
 [実装例（任意項目を利用しない場合）]
 
 ```c++
-OrcaPlugin::showRecommendPage(
+CCOrca::showRecommendPage(
   "65928b3ceeb3e9cb24d917e5532ad332", // シーンID
   0,                                  // クリア情報
   ""                                  // 任意項目を使用しない
@@ -192,7 +185,7 @@ OrcaPlugin::showRecommendPage(
 ### 5-1. クリエイティブ種別の取得
 
 ```c++
-int creativeType = OrcaPlugin::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
+int creativeType = CCOrca::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
 ```
 
 |パラメータ|内容|必須|備考|
@@ -210,7 +203,7 @@ int creativeType = OrcaPlugin::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332
 
 ## 6. ProGuardを利用する場合
 
-ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならない
+ProGuard を利用してアプリケーションの難読化を行う際は SDK のメソッドが対象とならない
 よう、以下の設定 を追加してください。
 
 ```prolog

@@ -1,5 +1,5 @@
-# 準備中
+## coming soon
 
 ----
 
-[TOPへ](/lang/ja/cocos2dx/README.md)
+[TOP](/lang/ja/cocos2dx/README.md)

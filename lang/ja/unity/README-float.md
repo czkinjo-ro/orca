@@ -1,9 +1,5 @@
 # みんなの攻略情報 Unity導入手順
 
-* みんなの攻略情報 SDK Version
-  * iOS SDK : 1.2.0
-  * Android SDK : 1.4.0
-
 ## 1. みんなの攻略情報 Unity Plugin
 
 みんなの攻略情報 Unity Pluginは、C#から実行可能なSDKとして提供しております。

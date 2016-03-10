@@ -1,8 +1,4 @@
 # 모두의 공략정보 Unity의 도입 방법
-* Modified : 2015-12-09
-* 모두의 공략정보 SDK Version
-  * iOS SDK : 1.0.1
-  * Android SDK : 1.3.0
 
 ## 1. 모두의 공략정보 Unity Plugin
 
@@ -55,7 +51,7 @@ Assets/Plugins/Android/AndroidManifest.xml을 참조하여 다음의 내용을 �
 #### * 퍼미션 설정
 
 SDK의 동작에 필요한 퍼미션을 AndroidManifest.xml에 추가합니다.
-<Manifest>태그 내에 다음의 퍼미션의 설정을 추가합니다.
+&lt;Manifest>태그 내에 다음의 퍼미션의 설정을 추가합니다.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -264,7 +260,7 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 
 ## 6. ProGuard를 사용하는 경우
 
-ProGuard를 이용하여 앱의 난독화 처리를 할 때는 F.O.X SDK의 메소드가 대상이되지 않도록 아래의 설정을 추가 하십시오.。
+ProGuard를 이용하여 앱의 난독화 처리를 할 때는 みんなの攻略情報SDK의 메소드가 대상이되지 않도록 아래의 설정을 추가 하십시오.。
 
 ```prolog
 -keepattributes *Annotation*

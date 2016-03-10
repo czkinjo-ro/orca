@@ -1,6 +1,6 @@
 ## Google Play Services SDKの取得
 
-以下に、2014年11月時点での、Google Play Services SDKの導入方法を記載致します。
+以下に、2015年11月時点での、Google Play Services SDKの導入方法を記載致します。
 Google Play Services SDKをインストールしていない場合は、Android SDK Managerからパッケージを取得します。
 
 * Android SDK Managerを起動します。
@@ -20,7 +20,7 @@ Google Play Services SDKをインストールしていない場合は、Android 
 
 ## Google Play Servicesの導入
 
-取得した「google-play-services.jar」を外部jarとして追加する方法は以下の通りで雨s。
+取得した「google-play-services.jar」を外部jarとして追加する方法は以下の通りです。
 
 * アプリケーションプロジェクトの「libs」フォルダー配下に「google-play-services.jar」をコピー
 

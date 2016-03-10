@@ -94,7 +94,7 @@ Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`�
 ## 使用ProGuard的情况
 
 
-使用ProGuard对程序进行代码混淆的时候，需要禁止对 ORCA SDK 的方法做代码混淆，请追加下面的配置。
+使用ProGuard对程序进行代码混淆的时候，需要禁止对 みんなの攻略情報SDK 的方法做代码混淆，请追加下面的配置。
 
 
 ```prolog

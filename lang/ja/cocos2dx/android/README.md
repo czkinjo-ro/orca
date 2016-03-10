@@ -1,32 +1,38 @@
-# Androidプロジックトの設定
+# Androidプロジェクトの設定
 
 ## パッケージ構成
 
 * Androidプロジェクト/
   * Classes/
-    * `OrcaPlugin.h`
-    * `OrcaPlugin.cpp`
+    * `CCOrca.h`
+    * `CCOrca.cpp`
+  * proj.android/
+    * `orca-androidsdk.jar`
 
-Cocos2dxPackage内の「orca-androidsdk.jar」をプロジェクトに組み込んでください。
 
-* [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+パッケージ内のファイルを対象プロジェクトに組み込んで下さい。
+  * Classes配下に`CCOrca.h`と`CCOrca.cpp`をコピーしてください。
+  * proj.android/libs配下に`orca-androidsdk.jar`をコピーしてください。
 
-### * Android/Classed配下にOrcaPlugin.hとOrcaPlugin.cppをコピーしてください。
+##### [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
 
-### * プロジェクト内配下のjni/Android.mk　を以下のように編集してください。
+### Android.mkの編集
+
+proj.android/jni/Android.mkに`CCOrca.cpp`を追加してください。
 
 ```mk
 LOCAL_SRC_FILES := ...
                    ...  //省略
-                   ../../Classes/OrcaPlugin.cpp
+                   ../../Classes/CCOrca.cpp
 ```
-LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
 
-### * OrcaPlugin.cppのJniHelper.hのinclude PATHを開発環境に合わせて編集してください。
+### CCOrca.cppのインクルード指定
+
+CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせて編集してください。
 
  ```c++
 #include "cocos2d.h"
-#include "OrcaPlugin.h"
+#include "CCOrca.h"
 #include "platform/android/jni/JniHelper.h"
  ```
 
@@ -51,11 +57,17 @@ LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
 
 ### * アクティビティの設定
-　SDKの動作に必要な以下のアクティビティをAndroidManifest.xmlに追加してください。
+
 ```xml
+<activity
+    android:name="net.orcaz.sdk.Orca"
+    android:configChanges="keyboardHidden|orientation|screenSize"
+    android:hardwareAccelerated="true" >
+</activity>        
 <activity
   android:name="net.orcaz.sdk.cocos2dx.Cocos2dxActivity"
   android:configChanges="orientation|keyboardHidden|screenSize"
@@ -71,6 +83,12 @@ LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
   android:configChanges="keyboardHidden|orientation|screenSize"
   android:theme="@android:style/Theme.Translucent" >
 </activity>
+<activity
+        android:name="net.orcaz.sdk.floating.ContentsActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:hardwareAccelerated="true" >
+</activity>
+<service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
 
 ### * Google Play Servicesを利用するための設定
@@ -80,9 +98,13 @@ LOCAL_SRC_FILESに「Classes/OrcaPlugin.cpp」追加
         android:value="@integer/google_play_services_version" />
 ```
 
+## 画面回転の設定
+
+Androidアプリの場合、画面の回転の設定については`AndroidManifest.xml`の`android:configChanges`を編集してください。
+
 ## ProGuardを利用する場合
 
-ProGuard を利用してアプリケーションの難読化を行う際は ORCA SDK のメソッドが対象とならない
+ProGuard を利用してアプリケーションの難読化を行う際は みんなの攻略情報SDK のメソッドが対象とならない
 よう、以下の設定を追加してください。
 
 ```prolog
@@ -97,5 +119,3 @@ ProGuard を利用してアプリケーションの難読化を行う際は O
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 ----
-
-[TOPへ](/lang/ja/cocos2dx/README.md)

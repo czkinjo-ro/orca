@@ -1,6 +1,4 @@
 # みんなの攻略情報 Unity WebView導入手順
-* Modified: 2015-12-09
-* みんなの攻略情報 SDK Version: 1.3.0
 
 ## 1. みんなの攻略情報 Unity WebView Plugin
 
@@ -297,7 +295,7 @@ int creativeType = Orca.getCreativeType("3ef9de9339eec72ff6ee71af1a71c156"); // 
 
 ## 6. ProGuardを利用する場合
 
-ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならない
+ProGuard を利用してアプリケーションの難読化を行う際は みんなの攻略情報SDK のメソッドが対象とならない
 よう、以下の設定 を追加してください。
 
 ```prolog

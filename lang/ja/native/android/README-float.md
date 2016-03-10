@@ -37,7 +37,7 @@ AndroidManifest.xmlを参照し、以下の内容をコピーしてください�
 ### * パーミッションの設定
 
 　SDKの動作に必要な権限をAndroidManifest.xmlに追加します。  
-　<Manifest>タグ内に次のパーミッションの設定を追加します。
+　&lt;Manifest>タグ内に次のパーミッションの設定を追加します。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -75,8 +75,6 @@ AndroidManifest.xmlを参照し、以下の内容をコピーしてください�
 
 ### * 画面回転の設定
 
-iOSアプリの場合、貴社アプリの回転設定に従って動作します。
-
 Androidアプリの場合、画面の回転の設定については`AndroidManifest.xml`の`android:configChanges`を編集してください。
 
 ### * Google Play Servicesを利用するための設定
@@ -90,7 +88,7 @@ Androidアプリの場合、画面の回転の設定については`AndroidManif
 
 ## ProGuardを利用する場合
 
-ProGuard を利用してアプリケーションの難読化を行う際は ORCA SDK のメソッドが対象とならない
+ProGuard を利用してアプリケーションの難読化を行う際は みんなの攻略情報SDK のメソッドが対象とならない
 よう、以下の設定を追加してください。
 
 ```prolog
