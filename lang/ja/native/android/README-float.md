@@ -244,12 +244,12 @@ Orca.showFloatIcon(
 ```java
 @Override
 public void onResume() {
-    Orca.getInstance().resume();
+    Orca.resume();
 }
 
 @Override
 public void onPause() {
-    Orca.getInstance().pause();
+    Orca.pause();
 }
 ```
 
