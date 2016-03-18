@@ -30,16 +30,30 @@ C++に定義した関数名からSDK機能の呼び出しを行います。
 
 ### 4-1. アプリ起動時
 
+以下のヘッダーファイルをインポートしてください。
+
+```c++
+#include "CCOrca.h"
+#include <OrcaSDK/OrcaCocos2dx.h>
+```
+
 アプリケーションの起動時にクライアントID・アプリケーションIDを設定する実装を行ってください。  
 各種IDは弊社より別途（ヒアリングシート等で）ご連絡致します。
 
 [実装例]
 
 ```c++
-CCOrca::configure(
-  "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
-  "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::configure(
+    "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
+    "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::configure(
+    "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
+    "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
+  );
+#endif
 ```
 
 |パラメータ|内容|必須|備考|
@@ -58,27 +72,49 @@ CCOrca::configure(
 [実装例]
 
 ```c++
-CCOrca::showFloatIcon(
-  "d4dc9737ecb40d25d1bc5b8a1f7798d4", // ページID
-  "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // シーンID（攻略情報が複数ある場合の例）
-  "レベル1",                           // ユーザレベル
-  "15",                                // ユーザ経験値
-  "勇者"                               // ユーザ設定キャラ
-  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::showFloatIcon(
+    "d4dc9737ecb40d25d1bc5b8a1f7798d4", // ページID
+    "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // シーンID（攻略情報が複数ある場合の例）
+    "レベル1",                           // ユーザレベル
+    "15",                                // ユーザ経験値
+    "勇者"                               // ユーザ設定キャラ
+    "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::showFloatIcon(
+    "d4dc9737ecb40d25d1bc5b8a1f7798d4", // ページID
+    "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // シーンID（攻略情報が複数ある場合の例）
+    "レベル1",                           // ユーザレベル
+    "15",                                // ユーザ経験値
+    "勇者"                               // ユーザ設定キャラ
+    "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}" // 任意項目
+  );
+#endif
 ```
 
 [実装例（配信制御を利用しない場合）]
 
 ```c++
-CCOrca::showFloatIcon(
-  "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
-  "65928b3ceeb3e9cb24d917e5532ad332",  // シーンID（攻略情報が1つだけの場合の例）
-  "",                                  // ユーザレベル
-  "",                                  // ユーザ経験値
-  "",                                  // ユーザ設定キャラ
-  ""                                   // 任意項目
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::showFloatIcon(
+    "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
+    "65928b3ceeb3e9cb24d917e5532ad332",  // シーンID（攻略情報が1つだけの場合の例）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    "",                                  // ユーザ設定キャラ
+    ""                                   // 任意項目
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::showFloatIcon(
+    "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
+    "65928b3ceeb3e9cb24d917e5532ad332",  // シーンID（攻略情報が1つだけの場合の例）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    "",                                  // ユーザ設定キャラ
+    ""                                   // 任意項目
+  );
+#endif
 ```
 
 #### 攻略情報フロートアイコンの表示を切り替える
@@ -100,14 +136,25 @@ CCOrca::showFloatIcon(
 [実装例]
 
 ```c++
-CCOrca::showFloatIcon(
-  "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
-  "",                                  // シーンID（指定なし）
-  "",                                  // ユーザレベル
-  "",                                  // ユーザ経験値
-  "",                                  // ユーザ設定キャラ
-  ""                                   // 任意項目
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::showFloatIcon(
+    "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
+    "",                                  // シーンID（指定なし）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    "",                                  // ユーザ設定キャラ
+    ""                                   // 任意項目
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::showFloatIcon(
+    "d4dc9737ecb40d25d1bc5b8a1f7798d4",  // ページID
+    "",                                  // シーンID（指定なし）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    "",                                  // ユーザ設定キャラ
+    ""                                   // 任意項目
+  );
+#endif
 ```
 
 
@@ -141,7 +188,7 @@ CCOrca::showFloatIcon(
 ※各項目は最大128桁まで設定可能です。  
 
 
-### 4-3. アプリ離脱時と復帰時
+### 4-3. アプリ離脱時と復帰時(Androidのみ)
 
 アプリ離脱時と復帰時に、攻略情報フロートアイコン表示／非表示を制御します。
 
@@ -160,13 +207,19 @@ AppDelegate.cpp
 void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
 
-    CCOrca::pause(); //この行を追加
+    // 下記の離脱処理を追加
+    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+      CCOrca::pause();
+    #endif
 }
 
 void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
 
-    CCOrca::resume(); //この行を追加
+    // 下記の復帰処理を追加
+    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+      CCOrca::resume();
+    #endif
 }
 ```
 

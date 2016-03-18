@@ -28,16 +28,30 @@ C++に定義した関数名からSDK機能の呼び出しを行います。
 
 ### 4-1. アプリ起動時
 
+以下のヘッダーファイルをインポートしてください。
+
+```c++
+#include "CCOrca.h"
+#include <OrcaSDK/OrcaCocos2dx.h>
+```
+
 アプリケーションの起動時にクライアントID・アプリケーションIDを設定する実装を行ってください。  
 各種IDは弊社より別途（ヒアリングシート等で）ご連絡致します。
 
 [実装例]
 
 ```c++
-CCOrca::configure(
-  "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
-  "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::configure(
+    "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
+    "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::configure(
+    "a5af3c3f6914c2d7aeb0fb702b940a06", // クライアントID
+    "0f67abb071b1a4267b4b13e5f47775df"  // アプリケーションID
+  );
+#endif
 ```
 
 |パラメータ|内容|必須|備考|
@@ -53,23 +67,41 @@ CCOrca::configure(
 [実装例]
 
 ```c++
-CCOrca::getRecommendPage(
-  "3ef9de9339eec72ff6ee71af1a71c156|75a3e173267a287c67c394e618775b98",  // シーンID（2個取得の場合の例）
-  "レベル1",                           // ユーザレベル
-  "15",                                // ユーザ経験値
-  "勇者"                               // ユーザ設定キャラ
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::getRecommendPage(
+    "3ef9de9339eec72ff6ee71af1a71c156|75a3e173267a287c67c394e618775b98",  // シーンID（2個取得の場合の例）
+    "レベル1",                           // ユーザレベル
+    "15",                                // ユーザ経験値
+    "勇者"                               // ユーザ設定キャラ
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::getRecommendPage(
+    "3ef9de9339eec72ff6ee71af1a71c156|75a3e173267a287c67c394e618775b98",  // シーンID（2個取得の場合の例）
+    "レベル1",                           // ユーザレベル
+    "15",                                // ユーザ経験値
+    "勇者"                               // ユーザ設定キャラ
+  );
+#endif
 ```
 
 [実装例（配信制御を利用しない場合）]
 
 ```c++
-CCOrca::getRecommendPage(
-  "3ef9de9339eec72ff6ee71af1a71c156",  // シーンID（1個取得の場合の例）
-  "",                                  // ユーザレベル
-  "",                                  // ユーザ経験値
-  ""                                   // ユーザ設定キャラ
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::getRecommendPage(
+    "3ef9de9339eec72ff6ee71af1a71c156",  // シーンID（1個取得の場合の例）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    ""                                   // ユーザ設定キャラ
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::getRecommendPage(
+    "3ef9de9339eec72ff6ee71af1a71c156",  // シーンID（1個取得の場合の例）
+    "",                                  // ユーザレベル
+    "",                                  // ユーザ経験値
+    ""                                   // ユーザ設定キャラ
+  );
+#endif
 ```
 
 |パラメータ|内容|必須|備考|
@@ -87,16 +119,15 @@ CCOrca::getRecommendPage(
 [実装例]
 
 ```c++
-int result = CCOrca::checkRecommendPage("3ef9de9339eec72ff6ee71af1a71c156");
-if (result == 1) {
-  // 攻略情報表示可能
-  // 例えば、攻略情報表示ボタンを表示する処理コードを実装
-} else if (result == 2) {
-  // 攻略情報の表示の準備ができていない
-  // 例えば、再度GetRecommendPageを呼び出すコードを実装
-} else if (result == 3) {
-  // 攻略情報表示不可能
-}
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  if (OrcaCocos2dx::checkRecommendPage("b7ffda6f493c2cfe07700a5310e57749") == 1) {
+    // 攻略情報表示ボタンを表示する処理コードを実装
+  }
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  if (CCOrca::checkRecommendPage("b7ffda6f493c2cfe07700a5310e57749") == 1) {
+    // 攻略情報表示ボタンを表示する処理コードを実装
+  }
+#endif
 ```
 
 |パラメータ|内容|必須|備考|
@@ -123,21 +154,38 @@ if (result == 1) {
 [実装例]
 
 ```c++
-CCOrca::showRecommendPage(
-  "65928b3ceeb3e9cb24d917e5532ad332" // シーンID
-  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}", // 任意項目
-  0                                 // クリア情報
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::showRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332" // シーンID
+    "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}", // 任意項目
+    0                                 // クリア情報
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::showRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332" // シーンID
+    "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}", // 任意項目
+    0                                 // クリア情報
+  );
+#endif
+
 ```
 
 [実装例（任意項目を利用しない場合）]
 
 ```c++
-CCOrca::showRecommendPage(
-  "65928b3ceeb3e9cb24d917e5532ad332", // シーンID
-  0,                                  // クリア情報
-  ""                                  // 任意項目を使用しない
-);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  OrcaCocos2dx::showRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332", // シーンID
+    0,                                  // クリア情報
+    ""                                  // 任意項目を使用しない
+  );
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+  CCOrca::showRecommendPage(
+    "65928b3ceeb3e9cb24d917e5532ad332", // シーンID
+    0,                                  // クリア情報
+    ""                                  // 任意項目を使用しない
+  );
+#endif
 ```
 
 |パラメータ|内容|必須|備考|
@@ -185,7 +233,12 @@ CCOrca::showRecommendPage(
 ### 5-1. クリエイティブ種別の取得
 
 ```c++
-int creativeType = CCOrca::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+  int creativeType = OrcaCocos2dx::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
+#elif (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+  int creativeType = CCOrca::getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // シーンID
+#endif
+
 ```
 
 |パラメータ|内容|必須|備考|

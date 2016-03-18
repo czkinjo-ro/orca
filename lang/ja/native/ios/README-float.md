@@ -17,9 +17,9 @@
 
 ## 3. プロジェクトへの導入
 
-貴社アプリのXCodeプロジェクトへOrcaSDKのフレームワークを追加します。
+貴社アプリのXCodeプロジェクトへみんなの攻略情報SDKのフレームワークを追加します。
 
-* [OrcaSDKの追加方法](./xcode/README.md)
+* [フレームワークの追加方法](./xcode/README.md)
 
 ## 依存ライブラリ
 
@@ -40,7 +40,7 @@ SwiftにてOrcaSDKを利用するにはBridging Headerにてインポートす�
 
 #### * Bridging Headerの例（ファイル名：Sample_Native_iOS-Bridging-Header.h）
 
-```objectivec
+```objective-c
 #ifndef Sample_Native_iOS_Bridging_Header_h
 #define Sample_Native_iOS_Bridging_Header_h
 
@@ -79,13 +79,13 @@ XCodeによって出力されたプロジェクトに含まれるAppDelegate.m�
 #### * Orcaヘッダをインポート。（Objective-Cの場合）
 
 
-```objectivec
+```objective-c
  #import "OrcaSDK/Orca.h"
 ```
 
 #### * -(void)applicationDidEnterBackground:内に[Orca setBackground:YES];を追加。
 
-```objectivec
+```objective-c
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
 	[Orca setBackground:YES];	// <- 追加
@@ -95,7 +95,7 @@ XCodeによって出力されたプロジェクトに含まれるAppDelegate.m�
 
 #### * -(void)applicationWillEnterForeground:内に[Orca setBackground:NO];を追加。
 
-```objectivec
+```objective-c
 - (void)applicationWillEnterForeground:(UIApplication*)application
 {
 	[Orca setBackground:NO];	// <- 追加

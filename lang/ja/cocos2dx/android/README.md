@@ -7,7 +7,8 @@
     * `CCOrca.h`
     * `CCOrca.cpp`
   * proj.android/
-    * `orca-androidsdk.jar`
+    * libs
+      * `orca-androidsdk.jar`
 
 
 パッケージ内のファイルを対象プロジェクトに組み込んで下さい。
@@ -18,7 +19,7 @@
 
 ### Android.mkの編集
 
-proj.android/jni/Android.mkに`CCOrca.cpp`を追加してください。
+proj.android/jni/Android.mkの`LOCAL_SRC_FILES`に`CCOrca.cpp`を追加してください。
 
 ```mk
 LOCAL_SRC_FILES := ...
