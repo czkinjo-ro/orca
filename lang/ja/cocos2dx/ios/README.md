@@ -14,4 +14,4 @@
   * Classes配下に`CCOrca.h`と`CCOrca.cpp`をコピーしてください。
   * proj.ios/libs配下に`OrcaSDK.framework`をコピーしてください。
 
-* [フレームワークの追加方法](/lang/ja/doc/native/xcode/README.md)
+* [フレームワークの追加方法](/lang/ja/native/ios/xcode/README.md)

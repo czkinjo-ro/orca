@@ -15,7 +15,7 @@
   * Classes配下に`CCOrca.h`と`CCOrca.cpp`をコピーしてください。
   * proj.android/libs配下に`orca-androidsdk.jar`をコピーしてください。
 
-##### [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+##### [Eclipseプロジェクトへの導入方法](/lang/ko/doc/integration/eclipse)
 
 ### Android.mkの編集
 
@@ -45,8 +45,8 @@ CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせ�
 |:--|:--|:--|
 |Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
 |Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
-* [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
+* [Google Play Servicesの導入方法](/lang/ko/doc/google_play_services)
+* [Android Asynchronous Http Clientの導入方法](/lang/ko/doc/async_http)
 
 ## AndroidManifest.xmlの編集
 
