@@ -16,6 +16,14 @@
  * [Cocos2d-x](./lang/ja/cocos2dx/)
 
 ### 한국어(Korean)
+* 공략 정보 플로트 아이콘 기능 도입 절차
+ * [Android](./lang/ko/native/android/README-float.md)
+ * [iOS](./lang/ko/native/ios/README-float.md)
+ * [Unity](./lang/ko/unity/README-float.md)
+ * [Cocos2d-x](./lang/ko/cocos2dx/README-float.md)
+ 
+
+* 공략 정보 기능 GUI 내장 도입 절차
  * [Android](./lang/ko/)
  * [Android WebView](./lang/ko/)
  * [Unity](./lang/ko/unity/)
