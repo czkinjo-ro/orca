@@ -20,6 +20,7 @@
 貴社アプリのXCodeプロジェクトへみんなの攻略情報SDKのフレームワークを追加します。
 
 * [フレームワークの追加方法](./xcode/README.md)
+* [App Transport Security の例外設定](/lang/ja/doc/ats)
 
 ## 依存ライブラリ
 
