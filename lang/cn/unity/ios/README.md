@@ -20,18 +20,21 @@ UnityPackage中「Assets/Plugins」里面的对象导入到项目里。
 |Security.framework|Required|
 * [AdSupport的导入方法(Systemconfiguration和Security同样)](./adsupport/README.md)
 
+## 關於App Transport Security的無效設置
+* [關於App Transport Security的無效設置](/lang/ja/doc/ats)
+
 ## 编辑UnityAppController.mm
 在从Unity导出的Xcode项目中的UnityAppController.mm文件中写入下面代码。
 #### * 导入Orca头文件。
 
 
-```objectivec
+```objective-c
  #import "OrcaSDK/Orca.h"
 ```
 
 #### * -(void)applicationDidEnterBackground:里追加[Orca setBackground:YES];
 
-```objectivec
+```objective-c
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
 	[Orca setBackground:YES];	// <- 追加
@@ -40,7 +43,7 @@ UnityPackage中「Assets/Plugins」里面的对象导入到项目里。
 ```
 
 #### * -(void)applicationWillEnterForeground:里追加[Orca setBackground:NO];
-```objectivec
+```objective-c
 - (void)applicationWillEnterForeground:(UIApplication*)application
 {
 	[Orca setBackground:NO];	// <- 追加

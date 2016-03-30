@@ -20,6 +20,7 @@
 把OracSDK程序导入到贵公司的XCode项目中
 
 * [OrcaSDK导入方法](./xcode/README.md)
+* [關於App Transport Security的無效設置](/lang/ja/doc/ats)
 
 ## 依赖库
 
