@@ -21,7 +21,7 @@ UnityPackage中「Assets/Plugins」里面的对象导入到项目里。
 * [AdSupport的导入方法(Systemconfiguration和Security同样)](./adsupport/README.md)
 
 ## 關於App Transport Security的無效設置
-* [關於App Transport Security的無效設置](/lang/ja/doc/ats)
+* [關於App Transport Security的無效設置](/lang/cn/doc/ats)
 
 ## 编辑UnityAppController.mm
 在从Unity导出的Xcode项目中的UnityAppController.mm文件中写入下面代码。
