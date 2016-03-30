@@ -214,7 +214,7 @@ Orca.showRecommendPage(
 );
 ```
 
-[実装例（任意項目を利用しない場合）]
+[구현 예 (전송 제어를 사용하지 않을 경우)]
 
 ```java
 Orca.showRecommendPage(
