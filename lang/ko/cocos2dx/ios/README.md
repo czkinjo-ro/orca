@@ -15,3 +15,4 @@
   * proj.ios/libs아래에 `OrcaSDK.framework`를 복사해 주십시오.
 
 * [프레임워크의 추가방법](/lang/ko/native/ios/xcode/README.md)
+* [App Transport Security의 예외설정](/lang/ko/doc/ats)

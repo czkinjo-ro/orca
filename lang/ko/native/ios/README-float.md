@@ -20,6 +20,7 @@
 귀사 앱의XCode프로젝트에 모두의 공략정보SDK의 프레임워크를 추가합니다.
 
 * [프레임워크 추가방법](./xcode/README.md)
+* [App Transport Security의 예외설정](/lang/ko/doc/ats)
 
 ## 의존 라이브러리
 

@@ -20,19 +20,24 @@ UnityPackage내의「Assets/Plugins」아래의 파일을 귀사의 프로젝트
 |Security.framework|Required|
 * [AdSupport의 도입 방법(SystemconfigurationとSecurity도 동일)](./adsupport/README.md)
 
+## App Transport Security의 예외설정
+Unity로부터 output된 Xcode프로젝트 설정
+
+* [App Transport Security의 예외설정](/lang/ja/doc/ats)
+
 ## UnityAppController.mm의 수정
 Unity에서 output된 Xcode의 프로젝트에 포함되어있는UnityAppController.mm에
 다음의 코드를 추가합니다.
 
 #### * Orca헤더의 import
 
-```objectivec
+```objective-c
  #import "OrcaSDK/Orca.h"
 ```
 
 #### * -(void)applicationDidEnterBackground:내의 [Orca setBackground:YES];를 추가
 
-```objectivec
+```objective-c
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
 	[Orca setBackground:YES];	// <- 추가
@@ -42,7 +47,7 @@ Unity에서 output된 Xcode의 프로젝트에 포함되어있는UnityAppControl
 
 #### * -(void)applicationWillEnterForeground:内に[Orca setBackground:NO];를 추가
 
-```objectivec
+```objective-c
 - (void)applicationWillEnterForeground:(UIApplication*)application
 {
 	[Orca setBackground:NO];	// <- 추가

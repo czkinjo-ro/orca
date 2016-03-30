@@ -21,11 +21,11 @@
  * [iOS](./lang/ko/native/ios/README-float.md)
  * [Unity](./lang/ko/unity/README-float.md)
  * [Cocos2d-x](./lang/ko/cocos2dx/README-float.md)
- 
+
 
 * 공략 정보 기능 GUI 내장 도입 절차
- * [Android](./lang/ko/)
- * [Android WebView](./lang/ko/)
+ * [Android](./lang/ko/native/android/)
+ * [Android WebView](./lang/ko/native/android/WebView)
  * [Unity](./lang/ko/unity/)
  * [Unity WebView](./lang/ko/unity/WebView/)
  * [Cocos2d-x](./lang/ko/cocos2dx/)

@@ -1,68 +1,142 @@
-# 모두의 공략정보 Unity의 도입 방법
-
-## 1. 모두의 공략정보 Unity Plugin
-
-모두의 공략정보 Unity Plugin은 C#에서 실행 가능한 Android Unity Plugin으로써 제공하고 있습니다.
+# 모두의 공략정보 Android SDK의 도입 방법
 
 ### 1-1. 동작 환경
-* Unity 4.2.0 (4.2.04f) 이상
-* iOS 6.0 이상
-* Android 4.2.2 이상
+ * Android 4.2.2 이상
 
-### 1-2. 용어
+### 1-2. 용허
+
 * **"scene"**  
 본 프로젝트에서는 공략 정보를 표시 할 각각의 퀘스트, 스테이지, 이벤트 등을 "scene"이라 호칭합니다.
 
-## 2. 다운로드
+## 2. SDK다운로드
 
 준비중입니다.
 
 ## 3. 프로젝트에 도입
 
-unitypackage 파일을 귀사의 프로젝트에 import 해 주십시오.
+* [Eclipse프로젝트에 도입 방법](/lang/ko/doc/integration/eclipse)
 
- [Unity 프로젝트의 import](http://docs.unity3d.com/ja/current/Manual/HOWTO-exportpackage.html)
+## 의존 라이브러리
 
-### 각 OS의 설정
-* [iOS프로젝트의 설정](./ios/README.md)
-* [Android프로젝트의 설정](./android/README.md)
+귀사의 앱에서 다음의 라이브러리를 사용하지 않는 경우 도입이 필요합니다.
+
+|명칭|도입 방법|
+|:--|:--|
+|Google Play Services|[정보 사이트](https://developers.google.com/android/guides/setup)  （AdvertisingId를 이용하지 않는 경우는 필요 없음）|
+|Android Asynchronous Http Client|[다운로드](http://loopj.com/android-async-http/)「libs」디렉토리 아래에 복사 하십시오.|
+* [Google Play Services도입 방법](/lang/ko/doc/google_play_services)
+* [Android Asynchronous Http Client도입 방법](/lang/ko/doc/async_http)
+
+## AndroidManifest.xml 편집
+
+AndroidManifest.xml을 참조하여 다음의 내용을 복사하십시오.
+
+### * 퍼미션 설정
+
+　SDK의 동작에 필요한 퍼미션을AndroidManifest.xml에 추가합니다.  
+　&lt;Manifest>태그 내에 다음의 퍼미션의 설정을 추가합니다.
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+
+### * activity의 설정
+
+```xml
+<activity
+  android:name="net.orcaz.sdk.Orca"
+  android:configChanges="orientation|keyboardHidden|screenSize"
+  android:hardwareAccelerated="true">
+</activity>
+<activity
+  android:name="net.orcaz.sdk.review.WebDialog"
+  android:configChanges="orientation|keyboardHidden|screenSize"
+  android:theme="@android:style/Theme.Dialog" >
+</activity>
+<activity
+  android:name="net.orcaz.sdk.common.DialogActivity"
+  android:configChanges="keyboardHidden|orientation|screenSize"
+  android:theme="@android:style/Theme.Translucent" >
+</activity>
+<activity
+        android:name="net.orcaz.sdk.floating.ContentsActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:hardwareAccelerated="true" >
+    </activity>
+    <service android:name="net.orcaz.sdk.floating.FloatService" />
+```
+
+### * Google Play Services를 이용하기 위한 설정
+　SDK동작에 필요한 아래의 메타데이터를AndroidManifest.xml에 추가하십시오.   
+　**android:value의 값은 적절한 버전을 설정하여 주십시오.**
+
+```xml
+<meta-data android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+```
+
+## ProGuard를 이용하는 경우
+
+ProGuard를 이용하여 앱의 난독화 처리를 할 때는 모두의 공략정보SDK의 메소드가 대상이되지 않도록 아래의 설정을 추가 하십시오.
+
+```prolog
+-keepattributes *Annotation*
+
+-libraryjars libs/orca-androidsdk.jar
+-keep class net.orcaz.sdk.** { *; }
+```
+
+또한、GooglePlayServiceSDK를 도입했을 경우、아래의 페이지에 keep지정이 기술되어있는지 확인하여 주십시오.
+
+[Google Play Services도입시의 Proguard대응](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 
-## 4. SDK 기능의 구현
+## 4. SDKSDK기능의 구현
 
-C# 스크립트에 정의 된 함수명으로부터 SDK의 기능을 호출합니다.
+### 4-1. 앱 기동시
 
-### 4-1. 앱 시작
-
-귀사의 앱 시작시 클라이언트ID・앱ID를 설정하는 구현을 해야합니다.</br>
-각종 ID는 폐사에서 별도(히어링 시트 등으로) 연락드립니다.
+**앱 기동시** 클라이언트ID・앱ID를 설정하여 구현하십시오.  
+각종ID는 폐사에서 별도（히어링 시트 등으로）연락 드립니다.
 
 [구현 예]
 
-```c#
-Orca.Configure(
-  "86b8094d44c175850b18ec31eb9adf71", // 클라이언트ID
-  "d1d1b00e741d2417a4a1f55b1eda5bed"  // 앱ID
-);
+```java
+
+import net.orcaz.sdk.Orca;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    Orca.configure(
+      this,                               // activity
+      "86b8094d44c175850b18ec31eb9adf71", // 클라이언트ID
+      "d1d1b00e741d2417a4a1f55b1eda5bed"  // 앱ID
+    );
+}
 ```
 
-| 매개변수 | 내용 | 필수 | 비고 |
+|매개변수|내용|필수|비고|
 |:------|:------|:------|:------|
-| 제 1 인수 | 클라이언트ID | 필수 | 폐사에서 발행하여 연락드립니다. |
-| 제 2 인수 | 앱ID | 필수 | 폐사에서 발행하여 연락드립니다. <br/>※ iOS、Android공통으로 이용가능|
-
+|제１인수|activity|필수|앱의 activity를 설정하십시오.<br/>|
+|제２인수|클라이언트ID|필수|폐사에서 발행하여 연락드립니다.<br/>|
+|제３인수|앱ID|필수|폐사에서 발행하여 연락드립니다.<br/>※ iOS、Android공통으로 이용가능|
 
 ### 4-2. 공략 정보 취득
+
 
 공략 정보를 표시하는 이전의 scene이 결정된 타이밍에 실행되도록 구현해야합니다.  
 sceneID는 폐사에서 별도(히어링 시트 등으로) 연락드립니다.
 
 [구현 예]
 
-```c#
-Orca.GetRecommendPage(
-  "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f", // sceneID (2개 취득의 경우의 예)
-  "レベル1",                            // 사용자 레벨
+```java
+Orca.getRecommendPage(
+  this,                               // activity
+  "65928b3ceeb3e9cb24d917e5532ad332|afc4a607d40edbe7c51853ac3af0910f",  // sceneID (2개 취득의 경우의 예)
+  "レベル1",                           // 사용자 레벨
   "15",                                // 사용자 경험치
   "勇者"                               // 사용자 설정 캐릭터
 );
@@ -70,30 +144,32 @@ Orca.GetRecommendPage(
 
 [구현 예 (전송 제어를 사용하지 않을 경우)]
 
-```c#
-Orca.GetRecommendPage(
-  "65928b3ceeb3e9cb24d917e5532ad332", // sceneID (1개 취득 경우의 예)
-  "",                                 // 사용자 레벨
-  "",                                 // 사용자 경험치
-  ""                                  // 사용자 설정 캐릭터
+```java
+Orca.getRecommendPage(
+  this,                                // activity
+  "65928b3ceeb3e9cb24d917e5532ad332",  // sceneID (1개 취득 경우의 예)
+  "",                                  // 사용자 레벨
+  "",                                  // 사용자 경험치
+  ""                                   // 사용자 설정 캐릭터
 );
 ```
 
 | 매개변수 | 내용 | 필수 | 비고 |
 |:------|:------|:------|:------|
-| 제 1 인수 | sceneID | 필수 | 폐사에서 발행하여 연락드립니다. <br/> 복수 scene 취득의 경우에는 " &#124; "로 구분하여 설정 (10개까지) <br/>※ iOS、Android공통으로 이용가능|
-| 제 2 인수 | 사용자 레벨 | 임의 | 사용자 레벨에서 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
-| 제 3 인수 | 사용자 경험치 | 임의 | 사용자 경험치로 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
-| 제 4 인수 | 사용자 설정 캐릭터 | 임의 | 사용자 설정 캐릭터로 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
+| 제 1 인수| activity | 필수 | 앱의 activity를 설정<br/>|
+| 제 2 인수 | sceneID | 필수 | 폐사에서 발행하여 연락드립니다. <br/> 복수 scene 취득의 경우에는 " &#124; "로 구분하여 설정 (10개까지) <br/>※ iOS、Android공통으로 이용가능|
+| 제 3 인수 | 사용자 레벨 | 임의 | 사용자 레벨에서 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
+| 제 4 인수 | 사용자 경험치 | 임의 | 사용자 경험치로 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
+| 제 5 인수 | 사용자 설정 캐릭터 | 임의 | 사용자 설정 캐릭터로 전송 제어를 할 경우 설정하십시오. <br/> (설정하지 않는 경우는 ""을 설정) |
 
 ### 4-3. 공략 정보 표시 체크
 
-공략 정보를 표시하기 전에 실행하여 상태를 확인하십시오.
+공략 정보를 표시하기 전에 실행하여 상태를 확인하십시오.  
 
 [구현 예]
 
-```c#
-int result = Orca.CheckRecommendPage("65928b3ceeb3e9cb24d917e5532ad332");
+```java
+int result = Orca.checkRecommendPage("65928b3ceeb3e9cb24d917e5532ad332");
 if (result == 1) {
   // 공략 정보 표시 가능
   // 예를 들어, 공략 정보 표시 버튼을 표시하는 처리 코드를 구현
@@ -105,6 +181,7 @@ if (result == 1) {
 }
 ```
 
+
 | 매개변수 | 내용 | 필수 | 비고 |
 |:------|:------|:------|:------|
 | 제 1 인수 | sceneID | 필수 | 폐사에서 발행하여 연락드립니다. <br/> 여러 scene의 체크는 할수 없습니다. <br/>※ iOS、Android공통으로 이용가능|
@@ -115,7 +192,7 @@ if (result == 1) {
 | 2 | 공략 정보를 표시 할 준비가되어 있지 않음 <br/> (준비한 공략 정보의 유효 기간 (디폴트 30분)의 만료 등) |
 | 3 | 공략 정보 표시 불가능 <br/> (초기화 설정이 성공하지 못했거나 지원하지 않는 OS버전, 예상치 못한 불일치 등) |
 
-[주의 사항]
+[주의 사항]  
 * 상태가 "2"이면 다시 「4-2 공략 정보 취득」을 실행하여 공략 정보를 검색 할 수 있습니다.    
 단, 전송 제어 등에 의해 표시할 후보가없는 경우 재 취득을 실행해도 상태는 변화하지 않습니다.  
 * 상태가 "2"또는 "3"상태에서 「4-4 공략 정보보기」를 실행하면 공략 정보는 표시되지 않고,  
@@ -127,29 +204,34 @@ if (result == 1) {
 
 [구현 예]
 
-```c#
-Orca.ShowRecommendPage(
+```java
+Orca.showRecommendPage(
+  this,                               // activity
   "65928b3ceeb3e9cb24d917e5532ad332", // sceneID
   0,                                  // 클리어 정보
-  "{'OptionalData'{'puid':'1234','pname':'홍길동','level':'레벨1',...}}" // 임의 항목
+  "{'OptionalData':{'puid':'1234','pname':'山田太郎','level':'レベル1', ・・・ }}", // 임의 항목
+  null
 );
 ```
 
-[구현 예 (임의 항목을 사용하지 않는 경우)
+[実装例（任意項目を利用しない場合）]
 
-```c#
-Orca.ShowRecommendPage(
+```java
+Orca.showRecommendPage(
+  this,                               // activity
   "65928b3ceeb3e9cb24d917e5532ad332", // sceneID
-  0,                                 // 일반 정보
-  ""                                 // 임의 항목을 사용하지 않음
+  0,                                  // 클리어 정보
+  "",                                 // 임의 항목을 사용하지 않음
+  null
 );
 ```
 
 | 매개변수 | 내용 | 필수 | 비고 |
 |:------|:------|:------|:------|
-| 제 1 인수 | sceneID | 필수 | 폐사에서 발행하여 연락드립니다. <br/>※ iOS、Android공통으로 이용가능|
-| 제 2 인수 | 클리어 정보 | 필수 | 게임 클리어 상태를 설정하십시오. <br/> (1:not complete 2:complete 3:before play) |
-| 제 3 인수 | 임의 항목 | 임의 | 임의 항목을 JSON 형식으로 설정하십시오. <br/> (설정하지 않는 경우는 ""로 설정) |
+| 제 1 인수 | activity | 필수 | 앱의 activity를 설정<br/> |
+| 제 2 인수 | sceneID | 필수 | 폐사에서 발행하여 연락드립니다. <br/>※ iOS、Android공통으로 이용가능|
+| 제 3 인수 | 클리어 정보 | 필수 | 게임 클리어 상태를 설정하십시오. <br/> (1:not complete 2:complete 3:before play) |
+| 제 4 인수 | 임의 항목 | 임의 | 임의 항목을 JSON 형식으로 설정하십시오. <br/> (설정하지 않는 경우는 ""로 설정) |
 
 [임의 항목에 대해]  
 설정 가능한 임의 항목은 다음을 참조하십시오.  
@@ -170,6 +252,7 @@ Orca.ShowRecommendPage(
 | 공격력 | power | 캐릭터의 공격력 수치 또는 명칭을 설정 |
 | 이용 또는 설정 장비/무기 관련 이름 | item | 캐릭터의 장비·무기 등의 명칭을 설정 |
 
+<a name="sample"></a>
 ### 4-5. 전체적인 구현 예(SDK 기능의 실행 타이밍)
 
 1. 앱 시작
@@ -183,13 +266,13 @@ Orca.ShowRecommendPage(
 6-3. 「4-3 공략 정보 표시 체크」가 "3"의 경우는 공략 정보가없는 경우의 처리
 
 7-1. 사용자에 의해서 공략 정보보기 액션(버튼 탭 등)
-7-2. 「4-4 공략 정보 표시」
+7-2. 「4-4 공략 정보 표시」  
 
 ## 5. 기타 API
 
 ### 5-1. 크리에이티브 종류의 취득
 
-```c#
+```java
 int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // sceneID
 ```
 
@@ -207,9 +290,9 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 
 공략 정보에 동영상이 포함 된 경우, 게임 내에서 재생되는 BGM을 중지 할 것을 권장합니다.
 
-## 6. SDK 도입후 테스트
+## 5. SDK 도입후 테스트
 
-### 6-1. 확인 사항
+### 5-1. 확인 사항
 
 스토어 신청전까지 SDK를 도입 한 상태에서 테스트를 실시하여 앱의 동작에 문제가 없는지 확인하십시오.
 
@@ -221,7 +304,7 @@ int creativeType = Orca.getCreativeType("65928b3ceeb3e9cb24d917e5532ad332"); // 
 폐사에 테스트 실행 시간을 알려주십시오. 제대로 SDK 기능이 작동하고 있는지 로그 등으로 확인합니다.  
 폐사측의 확인에서 문제가 없다면 테스트가 완료됩니다.
 
-### 6-2. 디버그 모드에 대해
+### 5-2. 디버그 모드에 대해
 
 테스트시의 확인 등을 위하여 디버그 모드를 준비하고 있습니다.
 
