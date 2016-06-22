@@ -15,7 +15,7 @@
   * Classes配下に`CCOrca.h`と`CCOrca.cpp`をコピーしてください。
   * proj.android/libs配下に`orca-androidsdk.jar`をコピーしてください。
 
-##### [Eclipseプロジェクトへの導入方法](/lang/ko/doc/integration/eclipse)
+##### [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
 
 ### Android.mkの編集
 
