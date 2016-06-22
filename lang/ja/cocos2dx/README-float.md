@@ -185,7 +185,7 @@ C++に定義した関数名からSDK機能の呼び出しを行います。
 ※各項目は最大128桁まで設定可能です。  
 
 
-### 4-3. アプリ離脱時と復帰時(Androidのみ)
+### 4-3. アプリ離脱時と復帰時
 
 アプリ離脱時と復帰時に、攻略情報フロートアイコン表示／非表示を制御します。
 
@@ -211,8 +211,10 @@ void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
 
     // 下記の離脱処理を追加
-    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
-      CCOrca::pause();
+    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_IOS)
+        OrcaCocos2dx::setBackground(true);
+    #elif (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+        CCOrca::pause();
     #endif
 }
 
@@ -220,8 +222,10 @@ void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
 
     // 下記の復帰処理を追加
-    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
-      CCOrca::resume();
+    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_IOS)
+        OrcaCocos2dx::setBackground(false);
+    #elif (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+        CCOrca::resume();
     #endif
 }
 ```

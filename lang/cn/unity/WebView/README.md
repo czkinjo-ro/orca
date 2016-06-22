@@ -39,7 +39,7 @@ unitypackageファイルをプロジェクトへインポートして下さい�
       * `WebViewPlugin.jar`
       * res/
     * iOS/
-      * `(準備中)`
+      * `OrcaSDK.framework`
 
 unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェクトに組み込んで下さい。
 

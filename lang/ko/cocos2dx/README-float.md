@@ -214,8 +214,10 @@ void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
 
     // background처리의 추가
-    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
-      CCOrca::pause();
+    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_IOS)
+        OrcaCocos2dx::setBackground(true);
+    #elif (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+        CCOrca::pause();
     #endif
 }
 
@@ -223,8 +225,10 @@ void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
 
     // foreground처리의 추가
-    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
-      CCOrca::resume();
+    #if (CC_TARGET_PLATFORM ==CC_PLATFORM_IOS)
+        OrcaCocos2dx::setBackground(false);
+    #elif (CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID)
+        CCOrca::resume();
     #endif
 }
 ```
