@@ -201,6 +201,12 @@ AppDelegate.h
 AppDelegate.cpp
 
 ```c++
+#if (CC_TARGET_PLATFORM ==CC_PLATFORM_IOS)
+#include "OrcaSDK/OrcaCocos2dx.h"
+#endif
+```
+
+```c++
 void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
 
