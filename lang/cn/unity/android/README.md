@@ -20,9 +20,7 @@ UnityPackage中「Assets/Plugins」里面的文件对象导入到项目里。
 |名称|導入手順|
 |:--|:--|
 |Google Play Services|[官网](https://developers.google.com/android/guides/setup)  （不使用AdvertisingId的情况下可以不导入）|
-|Android Asynchronous Http Client|下载[库](http://loopj.com/android-async-http/)拷贝到「Plugins」目录下。|
 * [Google Play Services导入方法](/lang/cn/doc/google_play_services)
-* [Android Asynchronous Http Client导入方法](/lang/cn/doc/async_http)
 
 ## 编辑AndroidManifest.xml
 

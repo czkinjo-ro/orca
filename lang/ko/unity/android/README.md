@@ -20,9 +20,7 @@ UnityPackage내의「Assets/Plugins」아래에 파일을 대상 프로젝트에
 |명칭|도입 방법|
 |:--|:--|
 |Google Play Services|[정보사이트](https://developers.google.com/android/guides/setup)  （AdvertisingId를 이용하지 않는 경우는 필요 없음）|
-|Android Asynchronous Http Client|[다운로드](http://loopj.com/android-async-http/)「Plugins」디렉토리 아래에 복사 하십시오.|
 * [Google Play Services의 도입 방법](/lang/ko/doc/google_play_services)
-* [Android Asynchronous Http Client의 도입 방법](/lang/ko/doc/async_http)
 
 ## AndroidManifest.xml의 수정
 

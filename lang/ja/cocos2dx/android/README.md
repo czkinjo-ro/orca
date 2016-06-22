@@ -44,9 +44,7 @@ CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせ�
 |名称|必須|導入手順|
 |:--|:--|:--|
 |Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
 * [Google Play Servicesの導入方法](/lang/ko/doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](/lang/ko/doc/async_http)
 
 ## AndroidManifest.xmlの編集
 

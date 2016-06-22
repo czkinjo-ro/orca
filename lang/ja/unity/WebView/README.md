@@ -50,7 +50,6 @@ unitypackage内の「Assets/Plugins」配下のファイルを対象プロジェ
 |名称|必須|導入手順|
 |:--|:--|:--|
 |Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|必須|[ダウンロード](http://loopj.com/android-async-http/)「Plugins」ディレクトリ配下に設置してください。|
 
 ### 3-3. AndroidManifest.xmlの編集
 

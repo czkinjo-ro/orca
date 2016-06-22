@@ -23,9 +23,7 @@
 |명칭|도입 방법|
 |:--|:--|
 |Google Play Services|[정보 사이트](https://developers.google.com/android/guides/setup)  （AdvertisingId를 이용하지 않는 경우는 필요 없음）|
-|Android Asynchronous Http Client|[다운로드](http://loopj.com/android-async-http/)「libs」디렉토리 아래에 복사 하십시오.|
 * [Google Play Services도입 방법](/lang/ko/doc/google_play_services)
-* [Android Asynchronous Http Client도입 방법](/lang/ko/doc/async_http)
 
 ## AndroidManifest.xml 편집
 

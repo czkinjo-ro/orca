@@ -26,9 +26,7 @@
 |名称|導入手順|
 |:--|:--|
 |Google Play Services|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-|Android Asynchronous Http Client|[ダウンロード](http://loopj.com/android-async-http/)「libs」ディレクトリ配下に設置してください。|
 * [Google Play Servicesの導入方法](/lang/ja/doc/google_play_services)
-* [Android Asynchronous Http Clientの導入方法](/lang/ja/doc/async_http)
 
 ## AndroidManifest.xmlの編集
 
