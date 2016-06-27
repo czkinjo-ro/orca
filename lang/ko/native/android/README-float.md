@@ -132,7 +132,32 @@ public void onCreate(Bundle savedInstanceState) {
 |제３인수|앱ID|필수|폐사에서 발행하여 연락드립니다.<br/>※ iOS、Android공통으로 이용가능|
 
 
-### 4-2. 공략정보 플로트 아이콘표시의 요청
+### 4-2. 앱 기동시(인스톨후 초기기동시)
+
+앱 인스톨후의 초기기동시에만 실행되도록 구현하여 주십시오
+
+[구현 예]
+
+```java
+
+import net.orcaz.sdk.Orca;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    Orca.configureFirstStart(
+      this,                               // activity
+      "86b8094d44c175850b18ec31eb9adf71", // 클라이언트ID
+      "d1d1b00e741d2417a4a1f55b1eda5bed"  // 앱ID
+    );
+}
+```
+
+※파라미터는 「4-1. 앱 기동시」와 동일합니다
+
+
+### 4-3. 공략정보 플로트 아이콘표시의 요청
 
 귀사 앱 화면에**공략 정보 플로트 아이콘**을 표시하고 싶을 때 실행하도록 구현해야합니다.  
 pageID、sceneID는 본사에서 별도(히어링 시트 등으로) 연락드립니다.  
@@ -171,7 +196,7 @@ Orca.showFloatIcon(
 #### 공략정보 플로트 아이콘 표시의 전환
 
 귀사 앱 화면 전환 등의 타이밍에서、호출 지점의 pageID・sceneID를 지정하여
-「4-2. 공략 정보 플로트 아이콘 요청」을 실행하십시오.
+「4-3. 공략 정보 플로트 아이콘 요청」을 실행하십시오.
 이미 표시된 공략 정보 플로트 아이콘을 삭제하고、새로운 플로트 아이콘을 표시합니다.
 
 #### 공략정보 플로트 아이콘의 디자인 변경
@@ -181,7 +206,7 @@ Orca.showFloatIcon(
 #### 공략정보 플로트 아이콘의 비표시
 
 한 번 호출 공략 정보 플로트 아이콘을 숨기려면、sceneID를 지정하지 않은 상태에서  
-「4-2. 공략정보 플로트 아이콘표시의 요청」을 실행하십시오.
+「4-3. 공략정보 플로트 아이콘표시의 요청」을 실행하십시오.
 
 
 [구현 예（플로트 아이콘 비표시）]
@@ -230,7 +255,7 @@ Orca.showFloatIcon(
 ※각 항목은 최대 128자리까지 설정 가능합니다.  
 
 
-### 4-3. 앱의 background,foreground처리
+### 4-4. 앱의 background,foreground처리
 
 앱이 background,foreground처리시 공략정보 플로트 아이콘의 표시/비표시는 제어합니다.
 

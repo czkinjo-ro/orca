@@ -58,7 +58,7 @@ Orca.Configure(
 [実装例]
 
 ```c#
-Orca.Configure(
+Orca.ConfigureFirstStart(
   "86b8094d44c175850b18ec31eb9adf71", // クライアントID
   "d1d1b00e741d2417a4a1f55b1eda5bed"  // アプリケーションID
 );
