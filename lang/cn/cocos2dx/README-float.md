@@ -23,7 +23,7 @@
 * [iOS项目配置](./ios/README.md)
 * [Android项目配置](./android/README.md)
 
-## 4. SDK功能的安装
+## 4. SDK功能安装
 
 通过用C++脚本定义好的函数名来调用SDK的功能。
 
