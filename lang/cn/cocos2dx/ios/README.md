@@ -1,8 +1,8 @@
-# iOSプロジェクトの設定
+# iOS项目配置
 
-## パッケージ構成
+## package结构
 
-* iOSプロジェクト/
+* iOS项目/
   * Classes/
     * `CCOrca.h`
     * `CCOrca.cpp`
@@ -10,9 +10,9 @@
     * libs
       * `OrcaSDK.framework`
 
-パッケージ内のファイルを対象プロジェクトに組み込んで下さい。
-  * Classes配下に`CCOrca.h`と`CCOrca.cpp`をコピーしてください。
-  * proj.ios/libs配下に`OrcaSDK.framework`をコピーしてください。
+请把Package内的文件导入到对象项目内。
+  * 请拷贝`CCOrca.h`と`CCOrca.cpp`到Classes下面。
+  * 请拷贝`OrcaSDK.framework`到proj.ios/libs下面。
 
-* [フレームワークの追加方法](/lang/ja/native/ios/xcode/README.md)
-* [App Transport Security の例外設定](/lang/ja/doc/ats)
+* [Framework的添加方法](/lang/cn/native/ios/xcode/README.md)
+* [App Transport Security例外配置](/lang/cn/doc/ats)
