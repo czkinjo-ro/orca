@@ -1,8 +1,8 @@
-# Androidプロジェクトの設定
+# Android项目的配置
 
-## パッケージ構成
+## package结构
 
-* Androidプロジェクト/
+* Android项目/
   * Classes/
     * `CCOrca.h`
     * `CCOrca.cpp`
@@ -11,15 +11,15 @@
       * `orca-androidsdk.jar`
 
 
-パッケージ内のファイルを対象プロジェクトに組み込んで下さい。
-  * Classes配下に`CCOrca.h`と`CCOrca.cpp`をコピーしてください。
-  * proj.android/libs配下に`orca-androidsdk.jar`をコピーしてください。
+请把Package内的文件导入到对象项目内。
+  * 请拷贝`CCOrca.h`と`CCOrca.cpp`到Classes下面。
+  * 请拷贝`orca-androidsdk.jar`到proj.android/libs下面。
 
-##### [Eclipseプロジェクトへの導入方法](/lang/ja/doc/integration/eclipse)
+##### [Eclipse项目导入方法](/lang/cn/doc/integration/eclipse)
 
-### Android.mkの編集
+### Android.mk的编辑
 
-proj.android/jni/Android.mkの`LOCAL_SRC_FILES`に`CCOrca.cpp`を追加してください。
+请添加`CCOrca.cpp`到proj.android/jni/Android.mk的`LOCAL_SRC_FILES`里。
 
 ```mk
 LOCAL_SRC_FILES := ...
@@ -27,9 +27,9 @@ LOCAL_SRC_FILES := ...
                    ../../Classes/CCOrca.cpp
 ```
 
-### CCOrca.cppのインクルード指定
+### CCOrca.cpp的安装
 
-CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせて編集してください。
+请按照开发环境来编辑CCOrca.cpp的JniHelper.h的include路径。
 
  ```c++
 #include "cocos2d.h"
@@ -37,20 +37,20 @@ CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせ�
 #include "platform/android/jni/JniHelper.h"
  ```
 
-## 依存ライブラリ
+## 依存类库
 
-貴社アプリで以下のライブラリを利用されていない場合は導入が必要となります。
+贵公司的App如果没有使用下面的库，需要另外导入。
 
-|名称|必須|導入手順|
+|名称|必须|導入手順|
 |:--|:--|:--|
-|Google Play Services|任意|[情報サイト](https://developers.google.com/android/guides/setup)  （AdvertisingIdを利用しない場合は必要なし）|
-* [Google Play Servicesの導入方法](/lang/ko/doc/google_play_services)
+|Google Play Services|任意|[官网](https://developers.google.com/android/guides/setup)  （不使用AdvertisingId的情况下可以不导入）|
+* [Google Play Services导入方法](/lang/cn/doc/google_play_services)
 
-## AndroidManifest.xmlの編集
+## 编辑AndroidManifest.xml
 
-### * パーミッションの設定
+### * 权限配置
 
-　SDKの動作に必要な以下のパーミッションをAndroidManifest.xmlに追加します。
+　追加SDK运行的必要权限到AndroidManifest.xml里。
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -59,7 +59,7 @@ CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせ�
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
 
-### * アクティビティの設定
+### * activity配置
 
 ```xml
 <activity
@@ -90,21 +90,21 @@ CCOrca.cppのJniHelper.hのインクルードパスを開発環境に合わせ�
 <service android:name="net.orcaz.sdk.floating.FloatService" />
 ```
 
-### * Google Play Servicesを利用するための設定
-　SDKの動作に必要な以下のメターデータをAndroidManifest.xmlに追加してください。
+### * 使用Google Play Services情况下的配置
+　追加SDK运行的必要meta-data到AndroidManifest.xml里。
 ```xml
 <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
 ```
 
-## 画面回転の設定
+## * 画面旋转配置
 
-Androidアプリの場合、画面の回転の設定については`AndroidManifest.xml`の`android:configChanges`を編集してください。
+Android App的情况下，编辑`AndroidManifest.xml`的`android:configChanges`配置画面旋转
 
-## ProGuardを利用する場合
+## 使用ProGuard的情况
 
-ProGuard を利用してアプリケーションの難読化を行う際は みんなの攻略情報SDK のメソッドが対象とならない
-よう、以下の設定を追加してください。
+使用ProGuard对程序进行代码混淆的时候，需要禁止对大家的游戏攻略SDK的方法做代码混淆，请追加下面的配置。
+
 
 ```prolog
 -keepattributes *Annotation*
@@ -113,8 +113,8 @@ ProGuard を利用してアプリケーションの難読化を行う際は �
 -keep class net.orcaz.sdk.** { *; }
 ```
 
-また、GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+另外，导入GooglePlayServiceSDK的情况下，参考下面的页面配置keep值。
 
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+[Google Play Services导入时使用Proguard](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 ----
